@@ -1,5 +1,5 @@
 import React from "react";
 import { render } from "react-dom";
-import Toplearn from "./toplearn";
+import App from "./components/containers/App";
 
-render(<Toplearn />, document.getElementById("root"));
+render(<App />, document.getElementById("root"));
