@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import registerUser from "../../services/userservices";
 const Register = () => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -11,42 +12,25 @@ const Register = () => {
     setEmail("");
     setFullname("");
   };
-  const handleRegisterFormSubmit = (event) => {
+  const handleRegisterFormSubmit = async (event) => {
     event.preventDefault();
     const user = {
       fullname: fullname,
       email: email,
       password: password,
     };
-
-    axios
-      .post(
-        "https://jsonplaceholder.typicode.com/posts",
-        JSON.stringify(user),
-        {
-          headers: {
-            // "Content-type": "application/json; charset=UTF-8",
-          },
-        }
-      )
-      .then(({ status }) => {
-        console.log(status);
-        if (status === 201) {
-          toast.success("با موفقیت ثبت نام شد", {
-            position: "top-right",
-            closeOnclick: true,
-          });
-        }
-        resetForm();
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.error("مشکلی پیش آمده است", {
+    try {
+      const { status } = await registerUser(user);
+      if (status === 201) {
+        toast.success("با موفقیت ایجاد شد", {
           position: "top-right",
           onClose: true,
         });
-      });
-
+        resetForm();
+      }
+    } catch {
+      toast.error("مشکلی پیش آمده", { position: "top-right", onClose: true });
+    }
     console.log(JSON.stringify(user));
     console.log(user);
   };
