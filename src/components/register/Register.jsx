@@ -1,6 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import { NavLink } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 const Register = () => {
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const resetForm = () => {
+    setPassword("");
+    setEmail("");
+    setFullname("");
+  };
+  const handleRegisterFormSubmit = (event) => {
+    event.preventDefault();
+    const user = {
+      fullname: fullname,
+      email: email,
+      password: password,
+    };
+
+    axios
+      .post(
+        "https://jsonplaceholder.typicode.com/posts",
+        JSON.stringify(user),
+        {
+          headers: {
+            // "Content-type": "application/json; charset=UTF-8",
+          },
+        }
+      )
+      .then(({ status }) => {
+        console.log(status);
+        if (status === 201) {
+          toast.success("با موفقیت ثبت نام شد", {
+            position: "top-right",
+            closeOnclick: true,
+          });
+        }
+        resetForm();
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("مشکلی پیش آمده است", {
+          position: "top-right",
+          onClose: true,
+        });
+      });
+
+    console.log(JSON.stringify(user));
+    console.log(user);
+  };
   return (
     <main className="client-page">
       <div className="container-content">
@@ -9,7 +58,7 @@ const Register = () => {
         </header>
 
         <div className="form-layer">
-          <form action="" method="">
+          <form action="" method="" onSubmit={handleRegisterFormSubmit}>
             <div className="input-group">
               <span className="input-group-addon" id="username">
                 <i className="zmdi zmdi-account"></i>
@@ -19,6 +68,8 @@ const Register = () => {
                 className="form-control"
                 placeholder="نام و نام خانوادگی"
                 aria-describedby="username"
+                value={fullname}
+                onChange={(e) => setFullname(e.target.value)}
               />
             </div>
 
@@ -27,10 +78,12 @@ const Register = () => {
                 <i className="zmdi zmdi-email"></i>
               </span>
               <input
-                type="text"
+                type="email"
                 className="form-control"
                 placeholder="ایمیل"
                 aria-describedby="email-address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -43,6 +96,8 @@ const Register = () => {
                 className="form-control"
                 placeholder="رمز عبور "
                 aria-describedby="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
@@ -68,6 +123,7 @@ const Register = () => {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </main>
   );
 };
