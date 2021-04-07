@@ -1,6 +1,64 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import { withRouter } from "react-router-dom";
+import { toast } from "react-toastify";
+import SimpleReactValidator from "simple-react-validator";
+import { loginUser } from "../../services/userservices";
 
-const Login = () => {
+const Login = ({ history }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [, forceUpdate] = useState();
+  const validator = useRef(
+    new SimpleReactValidator({
+      messages: {
+        required: "الزامی",
+        regex: "حداقل هشت کاراکتر-حاوی حروف بزرگ کوچک و کاراکترهای خاص مانند @",
+        email: "ایمیل صحیح نمیباشد",
+      },
+      element: (message) => <div style={{ color: "red" }}>{message}</div>,
+    })
+  );
+  const resetLoginForm = () => {
+    setPassword("");
+    setEmail("");
+  };
+  const handelLogin = async (event) => {
+    event.preventDefault();
+    const userLogin = {
+      email: email,
+      password: password,
+    };
+    try {
+      if (validator.current.allValid()) {
+        const { status } = await loginUser(userLogin);
+        if (status === 201) {
+          toast.success("با موفقیت لاگین شدید", {
+            position: "top-right",
+            onClose: true,
+          });
+          localStorage.setItem("token", email);
+          history.replace("/");
+          console.log(email);
+          resetLoginForm();
+        }
+        if (status === 400) {
+          toast.error("یوزرنیم یا پسورد اشتباه است", {
+            position: "top-right",
+            onClose: true,
+          });
+        }
+      } else {
+        validator.current.showMessages();
+        forceUpdate(1);
+      }
+    } catch (exp) {
+      toast.error("خطایی رخ داده است", {
+        position: "top-right",
+        onClose: true,
+      });
+      // console.log(exp);
+    }
+  };
   return (
     <main className="client-page">
       <div className="container-content">
@@ -9,17 +67,24 @@ const Login = () => {
         </header>
 
         <div className="form-layer">
-          <form action="" method="">
+          <form action="" method="" onSubmit={handelLogin}>
             <div className="input-group">
               <span className="input-group-addon" id="email-address">
                 <i className="zmdi zmdi-email"></i>
               </span>
               <input
-                type="text"
+                name="email"
+                type="email"
                 className="form-control"
                 placeholder="ایمیل"
                 aria-describedby="email-address"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  validator.current.showMessageFor("email");
+                }}
               />
+              {validator.current.message("email", email, "required|email")}
             </div>
 
             <div className="input-group">
@@ -27,11 +92,22 @@ const Login = () => {
                 <i className="zmdi zmdi-lock"></i>
               </span>
               <input
-                type="text"
+                type="password"
+                name="password"
                 className="form-control"
                 placeholder="رمز عبور "
                 aria-describedby="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  validator.current.showMessageFor("password");
+                }}
               />
+              {validator.current.message(
+                "password",
+                password,
+                "required|regex:^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])|min:8"
+              )}
             </div>
 
             <div className="remember-me">
@@ -59,4 +135,4 @@ const Login = () => {
     </main>
   );
 };
-export default Login;
+export default withRouter(Login);

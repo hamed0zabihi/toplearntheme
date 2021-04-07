@@ -4,7 +4,7 @@ import Header from "../common/Header";
 import MainNav from "../common/MainNav";
 import TopNav from "../common/TopNav";
 import Footer from "../common/Footer";
-
+import { ToastContainer } from "react-toastify";
 const MainLayout = (props) => {
   const { pathname } = props.location;
   return (
@@ -20,6 +20,7 @@ const MainLayout = (props) => {
         <div className="container">{props.children}</div>
       </main>
       <Footer />
+      <ToastContainer />
     </React.Fragment>
   );
 };

@@ -1,3 +1,5 @@
 {
-    "mainapi":"https://jsonplaceholder.typicode.com"
+    "mainapi":"https://jsonplaceholder.typicode.com",
+    "loginApi":"https://reqres.in"
+    
 }
