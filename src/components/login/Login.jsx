@@ -57,7 +57,7 @@ const Login = ({ history }) => {
 
           setLoading(false);
 
-          // history.replace("/");
+          history.replace("/");
           resetLoginForm();
         }
         if (status === 400) {
