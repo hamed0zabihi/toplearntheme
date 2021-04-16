@@ -1,11 +1,12 @@
 import React, { useState, useRef } from "react";
+import { withRouter } from "react-router-dom";
 import ReactLoading from "react-loading";
 import { NavLink } from "react-router-dom";
 import SimpleReactValidator from "simple-react-validator";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 import registerUser from "../../services/userservices";
-const Register = () => {
+const Register = ({ history }) => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,6 +32,7 @@ const Register = () => {
     setPassword("");
     setEmail("");
     setFullname("");
+    setVerifypassword("");
   };
   const handleRegisterFormSubmit = async (event) => {
     event.preventDefault();
@@ -49,6 +51,7 @@ const Register = () => {
             onClose: true,
           });
           setLoading(false);
+          history.replace("/");
           resetForm();
         }
       } else {
@@ -207,4 +210,4 @@ const Register = () => {
     </main>
   );
 };
-export default Register;
+export default withRouter(Register);
