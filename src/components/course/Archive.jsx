@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { paginate } from "../common/paginate";
 
 const Archive = () => {
+  const [state, setstate] = useState(initialState);
   return (
     <React.Fragment>
       <div className="container">
