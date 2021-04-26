@@ -3,9 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const Course = ({ coursess }) => {
   // let coursesArray = Object.values(coursess);
-  {
-    console.log("a" + coursess);
-  }
+
   return (
     <section className="terms-items">
       <header>
@@ -19,11 +17,14 @@ const Course = ({ coursess }) => {
             className="col-lg-3 col-md-4 col-sm-6 col-xs-12 term-col"
           >
             <article>
-              <Link to="/single" className="img-layer">
-                <img src={`images/pic/${courses.id}.jpg`} />
+              <Link to={`/single/${courses.id}`} className="img-layer">
+                {}
+                <img
+                  src={`images/pic/${Math.round((courses.id + 1) % 8) + 1}.jpg`}
+                />
               </Link>
               <h2>
-                <a href="">{courses.title} </a>
+                <Link to={`/single/${courses.id}`}>{courses.title} </Link>
               </h2>
               <span> رایگان </span>
               <i>1:52:32</i>

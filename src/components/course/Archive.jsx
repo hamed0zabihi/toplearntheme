@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { paginate } from "../common/paginate";
+import Pagination from "../common/pagination";
+import Course from "./Course";
 
 const Archive = () => {
-  const [state, setstate] = useState(initialState);
+  const courses = useSelector((state) => state.courses);
+  const allCourses = Object.values(courses);
+  const [perpage, setperpage] = useState(8);
+  const [currentpage, setcurrentpage] = useState(1);
+  const handlePageChage = (page) => {
+    setcurrentpage(page);
+  };
+  const archiveCourses = paginate(allCourses, currentpage, perpage);
   return (
     <React.Fragment>
       <div className="container">
@@ -31,7 +41,7 @@ const Archive = () => {
                 {" "}
                 دوره های <span> برنامه نویسی وب </span>{" "}
               </h1>{" "}
-              <span> 123 دوره </span>
+              <span> {allCourses.length} دوره </span>
             </header>
 
             <div className="row">
@@ -174,152 +184,32 @@ const Archive = () => {
             <div className="col-lg-9 col-md-8 col-sm-12 col-xs-12">
               <section className="terms-items">
                 <div className="row">
-                  <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 term-col">
-                    <article>
-                      <Link to="/single" className="img-layer">
-                        <img src="images/pic/1.jpg" />
-                      </Link>
-                      <h2>
-                        <Link to="/single">
-                          {" "}
-                          آموزش متریال دیاین در زامارین{" "}
+                  {/* {archiveCourses.map((archivecourses) => (
+                    <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 term-col">
+                      <article>
+                        <Link to="/single" className="img-layer">
+                          <img src="images/pic/4.jpg" />
                         </Link>
-                      </h2>
-                      <span> رایگان </span>
-                      <i>1:52:32</i>
-                    </article>
-                  </div>
-
-                  <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 term-col">
-                    <article>
-                      <Link to="/single" className="img-layer">
-                        <img src="images/pic/2.jpg" />
-                      </Link>
-                      <h2>
-                        <Link to="/single">
-                          {" "}
-                          آموزش متریال دیاین در زامارین{" "}
-                        </Link>
-                      </h2>
-                      <span> رایگان </span>
-                      <i>1:52:32</i>
-                    </article>
-                  </div>
-
-                  <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 term-col">
-                    <article>
-                      <Link to="/single" className="img-layer">
-                        <img src="images/pic/3.jpg" />
-                      </Link>
-                      <h2>
-                        <Link to="/single">
-                          {" "}
-                          آموزش متریال دیاین در زامارین{" "}
-                        </Link>
-                      </h2>
-                      <span> 150.000 تومان </span>
-                      <i>1:52:32</i>
-                    </article>
-                  </div>
-
-                  <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 term-col">
-                    <article>
-                      <Link to="/single" className="img-layer">
-                        <img src="images/pic/4.jpg" />
-                      </Link>
-                      <h2>
-                        <Link to="/single">
-                          {" "}
-                          آموزش متریال دیاین در زامارین{" "}
-                        </Link>
-                      </h2>
-                      <span> رایگان </span>
-                      <i>1:52:32</i>
-                    </article>
-                  </div>
-
-                  <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 term-col">
-                    <article>
-                      <Link to="/single" className="img-layer">
-                        <img src="images/pic/5.jpg" />
-                      </Link>
-                      <h2>
-                        <Link to="/single">
-                          {" "}
-                          آموزش متریال دیاین در زامارین{" "}
-                        </Link>
-                      </h2>
-                      <span> 15.000 تومان </span>
-                      <i>1:52:32</i>
-                    </article>
-                  </div>
-
-                  <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 term-col">
-                    <article>
-                      <Link to="/single" className="img-layer">
-                        <img src="images/pic/6.jpg" />
-                      </Link>
-                      <h2>
-                        <Link to="/single">
-                          {" "}
-                          آموزش متریال دیاین در زامارین{" "}
-                        </Link>
-                      </h2>
-                      <span> رایگان </span>
-                      <i>1:52:32</i>
-                    </article>
-                  </div>
-
-                  <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 term-col">
-                    <article>
-                      <Link to="/single" className="img-layer">
-                        <img src="images/pic/7.jpg" />
-                      </Link>
-                      <h2>
-                        <Link to="/single">
-                          {" "}
-                          آموزش متریال دیاین در زامارین{" "}
-                        </Link>
-                      </h2>
-                      <span> 20.000 تومان </span>
-                      <i>1:52:32</i>
-                    </article>
-                  </div>
-
-                  <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 term-col">
-                    <article>
-                      <Link to="/single" className="img-layer">
-                        <img src="images/pic/8.jpg" />
-                      </Link>
-                      <h2>
-                        <Link to="/single">
-                          {" "}
-                          آموزش متریال دیاین در زامارین{" "}
-                        </Link>
-                      </h2>
-                      <span> 75.000 تومان </span>
-                      <i>1:52:32</i>
-                    </article>
-                  </div>
-
-                  <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 term-col">
-                    <article>
-                      <Link to="/single" className="img-layer">
-                        <img src="images/pic/4.jpg" />
-                      </Link>
-                      <h2>
-                        <Link to="/single">
-                          {" "}
-                          آموزش متریال دیاین در زامارین{" "}
-                        </Link>
-                      </h2>
-                      <span> 75.000 تومان </span>
-                      <i>1:52:32</i>
-                    </article>
-                  </div>
+                        <h2>
+                          <Link to="/single">
+                            {" "}
+                            آموزش متریال دیاین در زامارین{" "}
+                          </Link>
+                        </h2>
+                        <span> رایگان </span>
+                        <i>1:52:32</i>
+                      </article>
+                    </div>
+                  ))} */}
+                  <Course coursess={archiveCourses} />
                 </div>
-
-                <nav aria-label="Page navigation">
+                <Pagination
+                  totalpages={allCourses.length}
+                  currentpage={currentpage}
+                  perpage={perpage}
+                  handlePageChage={handlePageChage}
+                />
+                {/* <nav aria-label="Page navigation">
                   <ul className="pagination justify-content-center">
                     <li className="page-item">
                       <a className="page-link" href="#" aria-label="Previous">
@@ -351,7 +241,7 @@ const Archive = () => {
                       </a>
                     </li>
                   </ul>
-                </nav>
+                </nav> */}
               </section>
             </div>
           </div>

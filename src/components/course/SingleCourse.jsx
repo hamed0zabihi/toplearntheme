@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { getSingleCourse } from "../../actions/course";
 
-const SingleCourse = () => {
+const SingleCourse = ({ match }) => {
+  const course = useSelector((state) => state.course);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getSingleCourse(match.params.id));
+    // console.log(match);
+  }, []);
   return (
     <React.Fragment>
       <div className="container">
@@ -29,9 +37,10 @@ const SingleCourse = () => {
           <div className="row">
             <div className="col-md-8 col-sm-12 col-xs-12 pull-left">
               <section className="term-description">
-                <img src="images/pic/big-thumb.jpg" />
+                <img src="../images/pic/big-thumb.jpg" />
 
-                <h2> ربات تلگرام برای چه کاری مفید است ؟ </h2>
+                <h2>{course.title}</h2>
+                <p>{course.body}</p>
                 <p>
                   لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
                   استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و
@@ -150,7 +159,7 @@ const SingleCourse = () => {
                             </div>
                           </div>
                           <div className="col-md-4 col-sm-5 col-xs-5">
-                            <img src="images/captcha.jpg" />
+                            <img src="../images/captcha.jpg" />
                           </div>
                         </div>
                       </div>
@@ -165,7 +174,7 @@ const SingleCourse = () => {
 
                   <div className="comment-list">
                     <div className="comment-row">
-                      <img src="images/pic/avatar.jpg" />
+                      <img src="../images/pic/avatar.jpg" />
                       <div className="left-col">
                         <h3> میترا رحیمی </h3>
                         <span>12/03/1397</span>
@@ -178,7 +187,7 @@ const SingleCourse = () => {
                     </div>
 
                     <div className="comment-row">
-                      <img src="images/pic/avatar.jpg" />
+                      <img src="../images/pic/avatar.jpg" />
                       <div className="left-col">
                         <h3> میترا رحیمی </h3>
                         <span>12/03/1397</span>
@@ -191,7 +200,7 @@ const SingleCourse = () => {
                     </div>
 
                     <div className="comment-row">
-                      <img src="images/pic/avatar.jpg" />
+                      <img src="../images/pic/avatar.jpg" />
                       <div className="left-col">
                         <h3> میترا رحیمی </h3>
                         <span>12/03/1397</span>
@@ -204,7 +213,7 @@ const SingleCourse = () => {
                     </div>
 
                     <div className="comment-row">
-                      <img src="images/pic/avatar.jpg" />
+                      <img src="../images/pic/avatar.jpg" />
                       <div className="left-col">
                         <h3> میترا رحیمی </h3>
                         <span>12/03/1397</span>
@@ -217,7 +226,7 @@ const SingleCourse = () => {
                     </div>
 
                     <div className="comment-row">
-                      <img src="images/pic/avatar.jpg" />
+                      <img src="../images/pic/avatar.jpg" />
                       <div className="left-col">
                         <h3> میترا رحیمی </h3>
                         <span>12/03/1397</span>
@@ -292,7 +301,7 @@ const SingleCourse = () => {
               </div>
 
               <article className="teacher-info">
-                <img src="images/pic/avatar.jpg" />
+                <img src="../images/pic/avatar.jpg" />
                 <h2> مدرس : ایمان مدائنی </h2>
                 <p>
                   لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
