@@ -7,14 +7,18 @@ import { loginUser } from "../../services/userservices";
 import { Helmet } from "react-helmet";
 
 import CookieServices from "../../services/cookieservices";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../actions/user";
 // import { useCookies } from "react-cookie";
 
 const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [rememberme, setRememberme] = useState();
   const [, forceUpdate] = useState();
   const [auth, setAuth] = useState(false);
+  const dispatch = useDispatch();
   // const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
 
   const validator = useRef(
@@ -48,15 +52,20 @@ const Login = ({ history }) => {
           });
           localStorage.setItem("token", email);
           let expires = new Date();
+          const expireTimeforlogin = expires.getTime() + 180000;
+          localStorage.setItem("expireTime", expireTimeforlogin);
+          localStorage.setItem("userName", "hamed zabihi");
+
           expires.setTime(expires.getTime() + 20000);
 
           const options = { path: "/", expires };
 
           // CookieServices("namdse", email, options);
           CookieServices.set("forToken", email, options);
-
+          const user = { email: email, name: "hamed zabihi" };
+          dispatch(addUser(user));
           setLoading(false);
-
+          console.log(status);
           history.replace("/");
           resetLoginForm();
         }
@@ -149,7 +158,15 @@ const Login = ({ history }) => {
 
             <div className="remember-me">
               <label>
-                <input type="checkbox" name="" /> مرا بخاطر بسپار{" "}
+                <input
+                  type="checkbox"
+                  name="rememberme"
+                  value={rememberme}
+                  onChange={(e) => {
+                    setRememberme(e.currentTarget.checked);
+                  }}
+                />{" "}
+                مرا بخاطر بسپار{" "}
               </label>
             </div>
 

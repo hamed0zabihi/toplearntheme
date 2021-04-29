@@ -10,6 +10,7 @@ const SingleCourse = ({ match }) => {
     dispatch(getSingleCourse(match.params.id));
     // console.log(match);
   }, []);
+
   return (
     <React.Fragment>
       <div className="container">
