@@ -6,7 +6,7 @@ import { clearUser } from "../../actions/user";
 const Logout = ({ history }) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(clearUser);
+    dispatch(clearUser());
     localStorage.removeItem("token");
     localStorage.removeItem("expireTime");
     localStorage.removeItem("userName");

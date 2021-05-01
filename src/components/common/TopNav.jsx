@@ -27,6 +27,11 @@ const TopNav = () => {
               <div className="loggein ">
                 <i className="zmdi zmdi-account"></i>
                 <a href=""> ایمان مدائنی ، خوش آمدی </a>
+                <NavLink activeStyle={{ color: "lime" }} to="/profile">
+                  {"     "}
+                  {user.name}
+                </NavLink>{" "}
+                /
                 <NavLink activeStyle={{ color: "lime" }} to="/logout">
                   {"     "}
                   خروج{"    "}
