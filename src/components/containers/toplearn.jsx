@@ -10,6 +10,7 @@ import Register from "../register/Register";
 import { paginate } from "../common/paginate";
 import { addUser } from "../../actions/user";
 import Logout from "../login/lougout";
+import Profile from "../profile/Profile";
 // import jwt form "jsonwebtoken";
 
 const Toplearn = () => {
@@ -51,6 +52,8 @@ const Toplearn = () => {
         <Route path="/register" component={Register} />
         <Route path="/logout" component={Logout} />
         <Route path="/login" component={Login} />
+        <Route path="/profile" component={Profile} />
+
         <Route path="/archive" component={Archive} />
         <Route path="/single/:id" component={SingleCourse} />
         <Route

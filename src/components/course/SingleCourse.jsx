@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { isEmpty } from "lodash";
 import { getSingleCourse } from "../../actions/course";
+import ShowImage from "../common/ShowImage";
 
 const SingleCourse = ({ match }) => {
-  const course = useSelector((state) => state.course);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSingleCourse(match.params.id));
-    // console.log(match);
+    // Math.round((match.params.id + 1) % 8) + 1
   }, []);
-
+  const course = useSelector((state) => state.course);
   return (
     <React.Fragment>
       <div className="container">
@@ -38,7 +38,11 @@ const SingleCourse = ({ match }) => {
           <div className="row">
             <div className="col-md-8 col-sm-12 col-xs-12 pull-left">
               <section className="term-description">
-                <img src="../images/pic/big-thumb.jpg" />
+                <ShowImage
+                  image={`../images/pic/${
+                    Math.round((course.id + 1) % 8) + 1
+                  }.jpg`}
+                />
 
                 <h2>{course.title}</h2>
                 <p>{course.body}</p>

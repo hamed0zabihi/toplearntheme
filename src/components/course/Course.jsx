@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-
+import ShowImage from "../common/ShowImage";
 const Course = ({ coursess }) => {
   // let coursesArray = Object.values(coursess);
 
@@ -18,9 +18,13 @@ const Course = ({ coursess }) => {
           >
             <article>
               <Link to={`/single/${courses.id}`} className="img-layer">
-                {}
-                <img
+                {/* <img
                   src={`images/pic/${Math.round((courses.id + 1) % 8) + 1}.jpg`}
+                /> */}
+                <ShowImage
+                  image={`images/pic/${
+                    Math.round((courses.id + 1) % 8) + 1
+                  }.jpg`}
                 />
               </Link>
               <h2>
