@@ -63,7 +63,7 @@ const Register = ({ history }) => {
       toast.error("مشکلی پیش آمده", { position: "top-right", onClose: true });
       console.log(exp);
     }
-    console.log(JSON.stringify(user));
+    // console.log(JSON.stringify(user));
   };
   return (
     <main className="client-page">

@@ -11,6 +11,7 @@ import { paginate } from "../common/paginate";
 import { addUser } from "../../actions/user";
 import Logout from "../login/lougout";
 import Profile from "../profile/Profile";
+import NotFound from "../common/notfound";
 // import jwt form "jsonwebtoken";
 
 const Toplearn = () => {
@@ -61,6 +62,7 @@ const Toplearn = () => {
           exact
           render={() => <Course coursess={indexCourses} />}
         />
+        <Route path="*" component={NotFound} />
       </Switch>
     </MainLayout>
   );

@@ -46,7 +46,7 @@ const Login = ({ history }) => {
         const userLogined = data.data;
         setLoading(true);
         if (status === 200) {
-          toast.success("با موفقیت لاگین شدید", {
+          toast.success("با موفقیت وارد شدید", {
             position: "top-right",
             onClose: true,
           });

@@ -9,6 +9,7 @@ const Archive = () => {
   const courses = useSelector((state) => state.courses);
   const allCourses = Object.values(courses);
   const [perpage, setperpage] = useState(8);
+  const [selectall, setSelectall] = useState();
   const [currentpage, setcurrentpage] = useState(1);
   const handlePageChage = (page) => {
     setcurrentpage(page);
@@ -65,24 +66,26 @@ const Archive = () => {
                     id="available-filter-1"
                     name="available"
                     value="all"
-                    checked=""
+                    onChange={(e) => {
+                      setSelectall(e.currentTarget.checked);
+                    }}
                     type="radio"
                   />
-                  <label for="available-filter-1"> همه </label>
+                  <label htmlFor="available-filter-1"> همه </label>
                   <input
                     id="available-filter-2"
                     name="available"
                     value="off"
                     type="radio"
                   />
-                  <label for="available-filter-2"> خریدنی </label>
+                  <label htmlFor="available-filter-2"> خریدنی </label>
                   <input
                     id="available-filter-3"
                     name="available"
                     value="normal"
                     type="radio"
                   />
-                  <label for="available-filter-3"> رایگان </label>
+                  <label htmlFor="available-filter-3"> رایگان </label>
                 </div>
               </div>
               <div className="col-md-4 col-sm-6 col-xs-12 pull-left">
@@ -138,43 +141,43 @@ const Archive = () => {
                   <ul>
                     <li>
                       <input type="checkbox" name="" id="cat-1" />
-                      <label for="cat-1"> برنامه نویسی وب </label>
+                      <label htmlFor="cat-1"> برنامه نویسی وب </label>
                     </li>
                     <li>
                       <input type="checkbox" name="" id="cat-2" />
-                      <label for="cat-2"> برنامه نویسی موبایل </label>
+                      <label htmlFor="cat-2"> برنامه نویسی موبایل </label>
                     </li>
                     <li>
                       <input type="checkbox" name="" id="cat-3" />
-                      <label for="cat-3"> برنامه نویسی وب </label>
+                      <label htmlFor="cat-3"> برنامه نویسی وب </label>
                     </li>
                     <li>
                       <input type="checkbox" name="" id="cat-4" />
-                      <label for="cat-4"> برنامه نویسی موبایل </label>
+                      <label htmlFor="cat-4"> برنامه نویسی موبایل </label>
                     </li>
                     <li>
                       <input type="checkbox" name="" id="cat-5" />
-                      <label for="cat-5"> برنامه نویسی وب </label>
+                      <label htmlFor="cat-5"> برنامه نویسی وب </label>
                     </li>
                     <li>
                       <input type="checkbox" name="" id="cat-6" />
-                      <label for="cat-6"> برنامه نویسی موبایل </label>
+                      <label htmlFor="cat-6"> برنامه نویسی موبایل </label>
                     </li>
                     <li>
                       <input type="checkbox" name="" id="cat-7" />
-                      <label for="cat-7"> برنامه نویسی وب </label>
+                      <label htmlFor="cat-7"> برنامه نویسی وب </label>
                     </li>
                     <li>
                       <input type="checkbox" name="" id="cat-8" />
-                      <label for="cat-8"> برنامه نویسی موبایل </label>
+                      <label htmlFor="cat-8"> برنامه نویسی موبایل </label>
                     </li>
                     <li>
                       <input type="checkbox" name="" id="cat-9" />
-                      <label for="cat-9"> برنامه نویسی وب </label>
+                      <label htmlFor="cat-9"> برنامه نویسی وب </label>
                     </li>
                     <li>
                       <input type="checkbox" name="" id="cat-10" />
-                      <label for="cat-10"> برنامه نویسی موبایل </label>
+                      <label htmlFor="cat-10"> برنامه نویسی موبایل </label>
                     </li>
                   </ul>
                 </div>
