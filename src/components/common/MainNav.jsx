@@ -10,67 +10,67 @@ const MainNav = () => {
           </span>
           <ul>
             <li>
-              <a href=""> برنامه نویسی موبایل </a>
+              <a href="/#"> برنامه نویسی موبایل </a>
               <ul>
                 <li>
-                  <a href=""> زامارین Xamarin </a>
+                  <a href="/#"> زامارین Xamarin </a>
                 </li>
                 <li>
-                  <a href=""> react Native </a>
+                  <a href="/#"> react Native </a>
                 </li>
               </ul>
             </li>
             <li>
-              <a href=""> برنامه نویسی وب </a>
+              <a href="/#"> برنامه نویسی وب </a>
               <ul>
                 <li>
-                  <a href=""> Asp.net WebForms </a>
+                  <a href="/#"> Asp.net WebForms </a>
                 </li>
                 <li>
-                  <a href=""> Asp.net MVC </a>
+                  <a href="/#"> Asp.net MVC </a>
                 </li>
                 <li>
-                  <a href=""> PHP MVC </a>
+                  <a href="/#"> PHP MVC </a>
                 </li>
                 <li>
-                  <a href=""> PHP FrameWorks </a>
+                  <a href="/#"> PHP FrameWorks </a>
                 </li>
                 <li>
-                  <a href=""> Asp.net Core </a>
+                  <a href="/#"> Asp.net Core </a>
                 </li>
               </ul>
             </li>
             <li>
-              <a href=""> برنامه نویسی تحت ویندوز </a>
+              <a href="/#"> برنامه نویسی تحت ویندوز </a>
             </li>
             <li>
-              <a href=""> طراحی سایت </a>
+              <a href="/#"> طراحی سایت </a>
               <ul>
                 <li>
-                  <a href=""> طراحی سایت </a>
+                  <a href="/#"> طراحی سایت </a>
                 </li>
                 <li>
-                  <a href=""> Bootstrap </a>
+                  <a href="/#"> Bootstrap </a>
                 </li>
                 <li>
-                  <a href=""> Angular </a>
+                  <a href="/#"> Angular </a>
                 </li>
                 <li>
-                  <a href=""> react </a>
+                  <a href="/#"> react </a>
                 </li>
                 <li>
-                  <a href=""> Jquery </a>
+                  <a href="/#"> Jquery </a>
                 </li>
               </ul>
             </li>
             <li>
-              <a href=""> بانک های اطلاعاتی </a>
+              <a href="/#"> بانک های اطلاعاتی </a>
             </li>
             <li>
-              <a href=""> سئو </a>
+              <a href="/#"> سئو </a>
             </li>
             <li>
-              <a href=""> سیستم عامل </a>
+              <a href="/#"> سیستم عامل </a>
             </li>
           </ul>
         </nav>

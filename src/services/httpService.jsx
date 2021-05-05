@@ -8,18 +8,21 @@ axios.defaults.headers["crossorigin"] = true;
 // axios.defaults.headers["Access-Control-Allow-Methods"] = "GET,PUT,POST,DELETE";
 
 axios.interceptors.response.use(null, (error) => {
-  const expectedError =
+  const expectedErrors =
     error.response &&
     error.response.status >= 400 &&
     error.response.status < 500;
-  if (!expectedError) {
-    toast.error("خطا از سمت سرور", {
+  if (!expectedErrors) {
+    console.log(error);
+    toast.error("مشکلی از سمت سرور رخ داده است.", {
       position: "top-right",
       closeOnClick: true,
     });
   }
+  console.log("reject");
   return Promise.reject(error);
 });
+
 export default {
   get: axios.get,
   post: axios.post,

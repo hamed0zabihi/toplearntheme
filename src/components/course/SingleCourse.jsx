@@ -11,6 +11,7 @@ const SingleCourse = ({ match }) => {
     // Math.round((match.params.id + 1) % 8) + 1
   }, []);
   const course = useSelector((state) => state.course);
+  console.log(typeof course.id); //object
   return (
     <React.Fragment>
       <div className="container">
@@ -38,11 +39,13 @@ const SingleCourse = ({ match }) => {
           <div className="row">
             <div className="col-md-8 col-sm-12 col-xs-12 pull-left">
               <section className="term-description">
-                <ShowImage
-                  image={`../images/pic/${
-                    Math.round((course.id + 1) % 8) + 1
-                  }.jpg`}
-                />
+                {course.id == match.params.id ? (
+                  <ShowImage
+                    image={`./../images/pic/${
+                      Math.round((course.id + 1) % 8) + 1
+                    }.jpg`}
+                  />
+                ) : null}
 
                 <h2>{course.title}</h2>
                 <p>{course.body}</p>
