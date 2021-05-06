@@ -28,7 +28,7 @@ const TopNav = () => {
                 <i className="zmdi zmdi-account"></i>
                 <NavLink activeStyle={{ color: "lime" }} to="/profile">
                   {"     "}
-                  {user.name}
+                  {user.fullname}
                 </NavLink>{" "}
                 /
                 <NavLink activeStyle={{ color: "lime" }} to="/logout">

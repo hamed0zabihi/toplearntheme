@@ -7,7 +7,10 @@ import Course from "./Course";
 
 const Archive = () => {
   const courses = useSelector((state) => state.courses);
+  // if use api jasonplaceholder.com
   const allCourses = Object.values(courses);
+
+  // const allCourses = courses;
   const [perpage, setperpage] = useState(8);
   const [selectall, setSelectall] = useState();
   const [currentpage, setcurrentpage] = useState(1);

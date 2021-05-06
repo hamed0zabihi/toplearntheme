@@ -6,6 +6,7 @@ import SimpleReactValidator from "simple-react-validator";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 import registerUser from "../../services/userservices";
+import { useSelector } from "react-redux";
 const Register = ({ history }) => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -14,6 +15,8 @@ const Register = ({ history }) => {
   const [verifypassword, setVerifypassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [, forceUpdate] = useState();
+  const user = useSelector((state) => state.user);
+
   const validator = useRef(
     new SimpleReactValidator({
       messages: {
@@ -59,7 +62,7 @@ const Register = ({ history }) => {
         forceUpdate(1);
       }
     } catch (exp) {
-      // setLoading(false);
+      setLoading(false);
       toast.error("مشکلی پیش آمده", { position: "top-right", onClose: true });
       console.log(exp);
     }
@@ -147,8 +150,9 @@ const Register = ({ history }) => {
                 {validator.current.message(
                   "password",
                   password,
-                  "required|regex:^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])|min:8"
+                  "required|min:5"
                 )}
+                {/* regex:^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])|min:8 */}
               </div>
               <div className="input-group">
                 <span className="input-group-addon" id="verifypassword">

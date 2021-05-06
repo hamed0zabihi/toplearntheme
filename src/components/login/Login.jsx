@@ -3,12 +3,13 @@ import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import ReactLoading from "react-loading";
 import SimpleReactValidator from "simple-react-validator";
-import { loginUser1 } from "../../services/userservices";
+import { loginUser } from "../../services/userservices";
 import { Helmet } from "react-helmet";
 
 import CookieServices from "../../services/cookieservices";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../actions/user";
+import decodeToken from "../common/decodeToken";
 // import { useCookies } from "react-cookie";
 
 const Login = ({ history }) => {
@@ -27,6 +28,7 @@ const Login = ({ history }) => {
         required: "الزامی",
         regex: "حداقل هشت کاراکتر-حاوی حروف بزرگ کوچک و کاراکترهای خاص مانند @",
         email: "ایمیل صحیح نمیباشد",
+        min: "حداقل مجاز",
       },
       element: (message) => <div style={{ color: "red" }}>{message}</div>,
     })
@@ -37,13 +39,18 @@ const Login = ({ history }) => {
   };
   const handelLogin = async (event) => {
     event.preventDefault();
-
+    const user = {
+      email: email,
+      password: password,
+    };
     try {
       if (validator.current.allValid()) {
-        const idForLoginFake = 1 + Math.floor(Math.random() * 11);
+        // const idForLoginFake = 1 + Math.floor(Math.random() * 11);
         //fake rest api is 12 number
-        const { status, data } = await loginUser1(idForLoginFake);
-        const userLogined = data.data;
+        // console.log("user:", user);
+        const { status, data } = await loginUser(user);
+        // const userLogined = data.data;
+        // console.log("data", data);
         setLoading(true);
         if (status === 200) {
           toast.success("با موفقیت وارد شدید", {
@@ -51,28 +58,28 @@ const Login = ({ history }) => {
             onClose: true,
           });
 
-          localStorage.setItem("token", userLogined.email);
+          localStorage.setItem("token", data.token);
           let expires = new Date();
           const expireTimeforlogin = expires.getTime() + 180000;
           localStorage.setItem("expireTime", expireTimeforlogin);
-          const fullName = userLogined.first_name + " " + userLogined.last_name;
-          localStorage.setItem("userName", fullName);
+          // const fullName = userLogined.first_name + " " + userLogined.last_name;
+          localStorage.setItem("userName", email);
 
-          expires.setTime(expires.getTime() + 20000);
+          expires.setTime(expires.getTime() + 200000);
 
           const options = { path: "/", expires };
 
           // CookieServices("namdse", email, options);
           CookieServices.set("forToken", email, options);
-          const user = {
-            email: userLogined.email,
-            name: fullName,
-            avatar: userLogined.avatar,
-            id: userLogined.id,
-          };
-          dispatch(addUser(user));
+          // const user = {
+          //   email: userLogined.email,
+          //   name: fullName,
+          //   avatar: userLogined.avatar,
+          //   id: userLogined.id,
+          // };
+          dispatch(addUser(decodeToken(data.token).payload.user));
           setLoading(false);
-          console.log(data);
+          // console.log(data);
           history.replace("/");
           resetLoginForm();
         }
@@ -94,7 +101,7 @@ const Login = ({ history }) => {
         onClose: true,
       });
       setLoading(false);
-      // console.log(exp);
+      console.log(exp);
     }
   };
   return (
@@ -159,8 +166,9 @@ const Login = ({ history }) => {
               {validator.current.message(
                 "password",
                 password,
-                "required|regex:^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])|min:8"
+                "required|min:5"
               )}
+              {/* regex:^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])| */}
             </div>
 
             <div className="remember-me">

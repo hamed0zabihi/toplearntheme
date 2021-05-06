@@ -6,12 +6,12 @@ import ShowImage from "../common/ShowImage";
 
 const SingleCourse = ({ match }) => {
   const dispatch = useDispatch();
+  const course = useSelector((state) => state.course);
   useEffect(() => {
     dispatch(getSingleCourse(match.params.id));
     // Math.round((match.params.id + 1) % 8) + 1
   }, []);
-  const course = useSelector((state) => state.course);
-  console.log(typeof course.id); //object
+
   return (
     <React.Fragment>
       <div className="container">
@@ -39,30 +39,12 @@ const SingleCourse = ({ match }) => {
           <div className="row">
             <div className="col-md-8 col-sm-12 col-xs-12 pull-left">
               <section className="term-description">
-                {course.id == match.params.id ? (
-                  <ShowImage
-                    image={`./../images/pic/${
-                      Math.round((course.id + 1) % 8) + 1
-                    }.jpg`}
-                  />
+                {!isEmpty(course) ? (
+                  <ShowImage image={course.imageUrl} />
                 ) : null}
 
                 <h2>{course.title}</h2>
-                <p>{course.body}</p>
-                <p>
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-                  استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و
-                  مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                  تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
-                  کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و
-                  آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم
-                  افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص
-                  طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این
-                  صورت می توان امید داشت که تمام و دشواری موجود در ارائه
-                  راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل
-                  حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای
-                  موجود طراحی اساسا مورد استفاده قرار گیرد.
-                </p>
+                <p>{course.info}</p>
 
                 <h2> سرفصل های این دوره : </h2>
                 <ul>

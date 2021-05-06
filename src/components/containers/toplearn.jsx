@@ -8,7 +8,8 @@ import MainLayout from "../layouts/MainLayouts";
 import Login from "../login/Login";
 import Register from "../register/Register";
 import { paginate } from "../common/paginate";
-import { addUser } from "../../actions/user";
+import decodeToken from "../common/decodeToken";
+import { addUser, clearUser } from "../../actions/user";
 import Logout from "../login/lougout";
 import Profile from "../profile/Profile";
 import NotFound from "../common/notfound";
@@ -19,32 +20,34 @@ const Toplearn = () => {
   const dispatch = useDispatch();
   // const coursess = Object.values(courses);
   // console.log(courses);
+  // if api is jasonplaceholder
   const b = Object.values(courses);
   const indexCourses = paginate(b, 1, 8);
-  // console.log("index");
+  // console.log("indexCourses", indexCourses);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      //     const decodedToken = jwt.decode(token, { complete: true });thiscomment
-      // const dateNow = Date.now() / 1000;this comment
-      const dateNow = Date.now();
-      const expireTime = localStorage.getItem("expireTime");
-      const userName = localStorage.getItem("userName");
-      const user = { email: token, name: userName };
-      if (expireTime && userName) {
-        if (expireTime < dateNow) {
-          localStorage.removeItem("token");
-          localStorage.removeItem("expireTime");
-          localStorage.removeItem("userName");
-        } else {
-          console.log("user:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-          dispatch(addUser(user));
-          console.log("user:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
-        }
-      }
+      const decodedToken = decodeToken(token);
+      const dateNow = Date.now() / 1000;
+      // const expireTime = localStorage.getItem("expireTime");
+      // const userName = localStorage.getItem("userName");
+      // const user = { email: token, name: userName };
+      // if (expireTime && userName) {
+      //   if (expireTime < dateNow) {
+      //     localStorage.removeItem("token");
+      //     localStorage.removeItem("expireTime");
+      //     localStorage.removeItem("userName");
+      //   } else {
+      //     console.log("user:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+      //     dispatch(addUser(user));
+      //     console.log("user:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+      //   }
+      // }
 
-      //     if (decodedToken.payload.exp < dateNow) localStorage.removeItem("token");thisis comment
-      //     else dispatch(addUser(decodedToken.payload.user));this is comment
+      if (decodedToken.payload.exp < dateNow) {
+        localStorage.removeItem("token");
+        dispatch(clearUser());
+      } else dispatch(addUser(decodedToken.payload.user));
     }
   }, []);
   return (

@@ -24,10 +24,10 @@ const Profile = () => {
                     <a href="" className="change-image">
                       <i className="zmdi zmdi-edit"></i>
                     </a>
-                    <img src={user.avatar} />
+                    <img src="images/pic/avatar.jpg" />
                   </div>
                   <div className="detail">
-                    <span>{user.name} </span>
+                    <span>{user.fullname} </span>
                   </div>
                 </div>
 
@@ -69,7 +69,7 @@ const Profile = () => {
                       <li>
                         {" "}
                         <i className="zmdi zmdi-account"></i> نام و نام خانوادگی
-                        :{user.name}{" "}
+                        :{user.fullname}{" "}
                       </li>
 
                       <li>
