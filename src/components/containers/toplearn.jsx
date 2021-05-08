@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Archive from "../course/Archive";
 import Course from "../course/Course";
@@ -13,11 +13,16 @@ import { addUser, clearUser } from "../../actions/user";
 import Logout from "../login/lougout";
 import Profile from "../profile/Profile";
 import NotFound from "../common/notfound";
+import PrivateLayout from "../layouts/PrivateLaout";
+import Dashboard from "../admin/Dashboard";
+import { isEmpty } from "lodash";
+
 // import jwt form "jsonwebtoken";
 
 const Toplearn = () => {
   const courses = useSelector((state) => state.courses);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   // const coursess = Object.values(courses);
   // console.log(courses);
   // if api is jasonplaceholder
@@ -51,23 +56,42 @@ const Toplearn = () => {
     }
   }, []);
   return (
-    <MainLayout>
-      <Switch>
-        <Route path="/register" component={Register} />
-        <Route path="/logout" component={Logout} />
-        <Route path="/login" component={Login} />
-        <Route path="/profile" component={Profile} />
+    <Switch>
+      <Route path={["/dashboard"]}>
+        <PrivateLayout>
+          <Route
+            path="/dashboard"
+            exact
+            render={() =>
+              !isEmpty(user) ? (
+                <Dashboard courses={courses} />
+              ) : (
+                <Redirect to="/" />
+              )
+            }
+          />
+        </PrivateLayout>
+      </Route>
+      <Route path={["/"]}>
+        <MainLayout>
+          <Switch>
+            <Route path="/register" component={Register} />
+            <Route path="/logout" component={Logout} />
+            <Route path="/login" component={Login} />
+            <Route path="/profile" component={Profile} />
 
-        <Route path="/archive" component={Archive} />
-        <Route path="/single/:id" component={SingleCourse} />
-        <Route
-          path="/"
-          exact
-          render={() => <Course coursess={indexCourses} />}
-        />
-        <Route path="*" component={NotFound} />
-      </Switch>
-    </MainLayout>
+            <Route path="/archive" component={Archive} />
+            <Route path="/single/:id" component={SingleCourse} />
+            <Route
+              path="/"
+              exact
+              render={() => <Course coursess={indexCourses} />}
+            />
+            <Route path="*" component={NotFound} />
+          </Switch>
+        </MainLayout>
+      </Route>
+    </Switch>
   );
 };
 export default Toplearn;

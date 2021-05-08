@@ -7,7 +7,7 @@ const registerUser = (user) => {
 export default registerUser;
 export const loginUser = (user) => {
   // console.log("json", JSON.stringify(user));
-  return http.post(`${config.ghorbaniApi}/api/login`, user);
+  return http.post(`${config.ghorbaniApi}/api/login`, JSON.stringify(user));
 };
 
 export const loginUser1 = (idForLoginFake) => {

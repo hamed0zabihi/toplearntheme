@@ -1,16 +1,19 @@
-import { isEmpty } from "lodash";
+import React from "react";
 import { useSelector } from "react-redux";
-import { Redirect } from "react-router";
+import { Link, Redirect } from "react-router-dom";
+import { isEmpty } from "lodash";
 import { toast } from "react-toastify";
 
 const Profile = () => {
   const user = useSelector((state) => state.user);
+  console.log("useSelector-user:", user);
+  console.log(isEmpty(user));
   if (isEmpty(user)) {
     toast.error("باید اول لاگین شوید", {
       position: "top-center",
       onClose: true,
     });
-    return <Redirect to="/" />;
+    // return <Redirect to="/" />;
   }
   return (
     <main>
@@ -79,7 +82,7 @@ const Profile = () => {
                       <li>
                         {" "}
                         <i className="zmdi zmdi-calendar-check"></i>
-                        شماره عضویت :{user.id}{" "}
+                        شماره عضویت :{user.userId}{" "}
                       </li>
                     </ul>
                   </div>
