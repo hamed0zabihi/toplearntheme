@@ -3,15 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { isEmpty } from "lodash";
 import { getSingleCourse } from "../../actions/course";
 import ShowImage from "../common/ShowImage";
+import courseIdValidator from "../common/courseIdvadilator";
+import { Redirect } from "react-router";
 
 const SingleCourse = ({ match }) => {
   const dispatch = useDispatch();
   const course = useSelector((state) => state.course);
   useEffect(() => {
-    dispatch(getSingleCourse(match.params.id));
+    if (courseIdValidator(match.params.id)) {
+      dispatch(getSingleCourse(match.params.id));
+    }
     // Math.round((match.params.id + 1) % 8) + 1
   }, []);
-
+  if (!courseIdValidator(match.params.id)) {
+    return <Redirect to="/notfoundig" />;
+  }
   return (
     <React.Fragment>
       <div className="container">
