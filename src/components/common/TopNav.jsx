@@ -31,6 +31,11 @@ const TopNav = () => {
                   {user.fullname}
                 </NavLink>{" "}
                 /
+                <NavLink activeStyle={{ color: "lime" }} to="/dashboard">
+                  {"     "}
+                  داشبورد
+                </NavLink>{" "}
+                /
                 <NavLink activeStyle={{ color: "lime" }} to="/logout">
                   {"     "}
                   خروج{"    "}
