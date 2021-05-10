@@ -9,7 +9,8 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
 // axios.defaults.headers["crossorigin"] = true;
 // add for error cross orgin in firefox browser-and https://jsonplaceholder.typicode.com/posts?_page=1&_limit=36 api
 const token = localStorage.getItem("token");
-if (token) axios.defaults.headers.common["Authorization"] = `Bearer${token}`;
+if (token) axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
 //bearer means carrier-
 axios.interceptors.response.use(null, (error) => {
   const expectedErrors =

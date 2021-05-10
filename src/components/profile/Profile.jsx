@@ -6,8 +6,8 @@ import { toast } from "react-toastify";
 
 const Profile = () => {
   const user = useSelector((state) => state.user);
-  console.log("useSelector-user:", user);
-  console.log(isEmpty(user));
+  // console.log("useSelector-user:", user);
+  // console.log(isEmpty(user));
   if (isEmpty(user)) {
     toast.error("باید اول لاگین شوید", {
       position: "top-center",

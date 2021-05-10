@@ -10,3 +10,7 @@ export const getCourses = () => {
 export const getCourse = (id) => {
   return http.get(`${config.ghorbaniApi}/api/course/${id}`);
 };
+
+export const NewCourse = (course) => {
+  return http.post(`${config.ghorbaniApi}/api/course`, course);
+};

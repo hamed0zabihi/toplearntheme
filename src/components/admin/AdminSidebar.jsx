@@ -2,7 +2,7 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 
 const AdminSidebar = ({ location }) => {
-  console.log("location:", location);
+  // console.log("location:", location);
   return (
     <div>
       <ul className="nav navbar-nav side-nav" style={{ height: "100vh" }}>

@@ -31,11 +31,11 @@ const TopNav = () => {
                   {user.fullname}
                 </NavLink>{" "}
                 /
-                <NavLink activeStyle={{ color: "lime" }} to="/dashboard">
-                  {"     "}
-                  داشبورد
-                </NavLink>{" "}
-                /
+                {user.isAdmin ? (
+                  <NavLink activeStyle={{ color: "lime" }} to="/dashboard">
+                    داشبورد/
+                  </NavLink>
+                ) : null}
                 <NavLink activeStyle={{ color: "lime" }} to="/logout">
                   {"     "}
                   خروج{"    "}

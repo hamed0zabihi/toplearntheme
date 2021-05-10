@@ -16,6 +16,8 @@ import NotFound from "../common/notfound";
 import PrivateLayout from "../layouts/PrivateLaout";
 import Dashboard from "../admin/Dashboard";
 import { isEmpty } from "lodash";
+import CourseTable from "../admin/CourseTable";
+import AddNewCourse from "../admin/AddNewCourse";
 
 // import jwt form "jsonwebtoken";
 
@@ -27,7 +29,7 @@ const Toplearn = () => {
   // console.log(courses);
   // if api is jasonplaceholder
   const b = Object.values(courses);
-  const indexCourses = paginate(b, 1, 8);
+  const indexCourses = paginate(courses, 1, 8);
   // console.log("indexCourses", indexCourses);
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -57,13 +59,30 @@ const Toplearn = () => {
   }, []);
   return (
     <Switch>
+      {/* <Route
+        path="/modal"
+        render={() =>
+          !isEmpty(user) && user.isAdmin ? <AddNewCourse /> : null
+        }
+      ></Route> */}
+
       <Route path={["/dashboard"]}>
         <PrivateLayout>
+          <Route
+            path="/dashboard/courses"
+            render={() =>
+              !isEmpty(user) && user.isAdmin ? (
+                <CourseTable courses={b} />
+              ) : (
+                <Redirect to="/" />
+              )
+            }
+          />
           <Route
             path="/dashboard"
             exact
             render={() =>
-              !isEmpty(user) ? (
+              !isEmpty(user) && user.isAdmin ? (
                 <Dashboard courses={courses} />
               ) : (
                 <Redirect to="/" />

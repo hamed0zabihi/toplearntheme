@@ -1,8 +1,9 @@
-export const courcesReducer = (state = {}, action) => {
+export const courcesReducer = (state = [], action) => {
   switch (action.type) {
     case "INIT":
-      return { ...action.payload };
-
+      return [...action.payload];
+    case "CREATE_COURSE":
+      return [...action.payload];
     default:
       return state;
   }
