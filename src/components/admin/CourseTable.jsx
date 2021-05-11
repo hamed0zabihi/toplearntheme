@@ -3,27 +3,34 @@ import Pagination from "../common/pagination";
 import { paginate } from "../common/paginate";
 import AddNewCourse from "./AddNewCourse";
 import EditCourseModal from "./EditCourse";
+import DeleteCourseModal from "./DeleteCourseModal";
 
 const CourseTable = ({ courses }) => {
-  // console.log("courses in coursetable", courses);
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage] = useState(5);
-
   const handlePageChage = (page) => {
     setCurrentPage(page);
   };
 
   const courseData = paginate(courses, currentPage, perPage);
   // modal
-  const [modal, setModal] = useState(false);
-  const [modalforedit, setmodalforedit] = useState(false);
-  const [CurrentCourseForEdit, setCurrentCourseForEdit] = useState({});
+  const [modal, setModal] = useState(false); //for create course
+  const [modalforedit, setmodalforedit] = useState(false); //for edit coures
+  const [CurrentCourseForEdit, setCurrentCourseForEdit] = useState({}); //for edit course
+  const [idForDelete, setidForDelete] = useState();
+  const [modalForDelete, setmodalForDelete] = useState(false);
 
-  const toggle = () => setModal(!modal);
-  const toggleForEdite = () => setmodalforedit(!modalforedit);
+  const toggle = () => setModal(!modal); //for create
+  const toggleForEdite = () => setmodalforedit(!modalforedit); //for edit
+  const toggleForDelete = () => setmodalForDelete(!modalForDelete); //for delete
+
   const openModalEdit = (course) => {
     setmodalforedit(true);
     setCurrentCourseForEdit(course);
+  };
+  const openModalDelete = (idForDelete) => {
+    setmodalForDelete(true);
+    setidForDelete(idForDelete);
   };
   return (
     <React.Fragment>
@@ -87,7 +94,12 @@ const CourseTable = ({ courses }) => {
                       </button>
                     </td>
                     <td>
-                      <button className="btn btn-danger">حذف</button>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => openModalDelete(course._id)}
+                      >
+                        حذف
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -107,6 +119,11 @@ const CourseTable = ({ courses }) => {
             toggle={toggleForEdite}
             modal={modalforedit}
             course={CurrentCourseForEdit}
+          />
+          <DeleteCourseModal
+            toggle={toggleForDelete}
+            modal={modalForDelete}
+            id={idForDelete}
           />
         </div>
       </section>

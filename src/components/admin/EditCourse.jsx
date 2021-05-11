@@ -43,7 +43,6 @@ const EditCourseModal = ({ toggle, modal, course }) => {
   };
   return (
     <div>
-      <button onClick={toggle}>Show Dialog</button>{" "}
       <DialogOverlay
         style={{ background: "hsla(0, 100%, 100%, 0.9)" }}
         isOpen={modal}

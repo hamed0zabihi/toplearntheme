@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dialog, DialogOverlay, DialogContent } from "@reach/dialog";
+import { DialogOverlay, DialogContent } from "@reach/dialog";
 import { useDispatch } from "react-redux";
 import { CreateNewCourse } from "../../actions/courses";
 const AddNewCourse = ({ toggle, modal }) => {
@@ -26,7 +26,6 @@ const AddNewCourse = ({ toggle, modal }) => {
   };
   return (
     <div>
-      <button onClick={toggle}>Show Dialog</button>{" "}
       <DialogOverlay
         style={{ background: "hsla(0, 100%, 100%, 0.9)" }}
         isOpen={modal}

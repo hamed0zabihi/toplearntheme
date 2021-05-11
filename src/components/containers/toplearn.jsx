@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Archive from "../course/Archive";
 import Course from "../course/Course";
@@ -59,13 +59,6 @@ const Toplearn = () => {
   }, []);
   return (
     <Switch>
-      {/* <Route
-        path="/modal"
-        render={() =>
-          !isEmpty(user) && user.isAdmin ? <AddNewCourse /> : null
-        }
-      ></Route> */}
-
       <Route path={["/dashboard"]}>
         <PrivateLayout>
           <Route
@@ -98,7 +91,6 @@ const Toplearn = () => {
             <Route path="/logout" component={Logout} />
             <Route path="/login" component={Login} />
             <Route path="/profile" component={Profile} />
-
             <Route path="/archive" component={Archive} />
             <Route path="/single/:id" component={SingleCourse} />
             <Route

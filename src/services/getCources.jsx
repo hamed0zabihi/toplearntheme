@@ -17,3 +17,8 @@ export const NewCourse = (course) => {
 export const sendCourseForUpdate = (id, course) => {
   return http.put(`${config.ghorbaniApi}/api/course/${id}`, course);
 };
+
+export const DeleteCourse = (id) => {
+  console.log("id", id);
+  return http.delete(`${config.ghorbaniApi}/api/course/${id}`);
+};

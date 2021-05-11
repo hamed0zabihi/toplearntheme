@@ -2,8 +2,12 @@ import {
   getCourses,
   NewCourse,
   sendCourseForUpdate,
+  DeleteCourse,
 } from "../services/getCources";
-import { SuccessMessage } from "../components/common/ToastMassage";
+import {
+  SuccessMessage,
+  ErrorMessage,
+} from "../components/common/ToastMassage";
 
 export const getAllCourses = () => {
   return async (dispatch) => {
@@ -46,6 +50,24 @@ export const UpdateCourse = (id, updatedcourse) => {
       await dispatch({ type: "UPDATE_COURSE", payload: [...courses] });
 
       console.log(ex);
+    }
+  };
+};
+
+export const DeleteCourseAction = (id) => {
+  return async (dispatch, getState) => {
+    const courses = [...getState().courses];
+    const filteredCourses = courses.filter((el) => el._id !== id);
+    try {
+      await dispatch({ type: "DELETE_COURSE", payload: [...filteredCourses] });
+      const { status } = await DeleteCourse(id);
+      if (status === 200) {
+        SuccessMessage("با موفقیت از پایگاه داده حذف شد");
+      }
+    } catch (exp) {
+      await dispatch({ type: "DELETE_COURSE", payload: [...courses] });
+      ErrorMessage("عملیات انجام نشد");
+      console.log(exp);
     }
   };
 };

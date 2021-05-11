@@ -190,23 +190,6 @@ const Archive = () => {
             <div className="col-lg-9 col-md-8 col-sm-12 col-xs-12">
               <section className="terms-items">
                 <div className="row">
-                  {/* {archiveCourses.map((archivecourses) => (
-                    <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 term-col">
-                      <article>
-                        <Link to="/single" className="img-layer">
-                          <img src="images/pic/4.jpg" />
-                        </Link>
-                        <h2>
-                          <Link to="/single">
-                            {" "}
-                            آموزش متریال دیاین در زامارین{" "}
-                          </Link>
-                        </h2>
-                        <span> رایگان </span>
-                        <i>1:52:32</i>
-                      </article>
-                    </div>
-                  ))} */}
                   <Course coursess={archiveCourses} />
                 </div>
                 <Pagination
@@ -215,39 +198,6 @@ const Archive = () => {
                   perpage={perpage}
                   handlePageChage={handlePageChage}
                 />
-                {/* <nav aria-label="Page navigation">
-                  <ul className="pagination justify-content-center">
-                    <li className="page-item">
-                      <a className="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">
-                          <i className="zmdi zmdi-chevron-right"></i>
-                        </span>
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="#">
-                        1
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="#">
-                        2
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="#">
-                        3
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">
-                          <i className="zmdi zmdi-chevron-left"></i>
-                        </span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav> */}
               </section>
             </div>
           </div>
