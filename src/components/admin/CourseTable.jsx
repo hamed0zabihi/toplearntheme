@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Pagination from "../common/pagination";
 import { paginate } from "../common/paginate";
 import AddNewCourse from "./AddNewCourse";
@@ -12,7 +12,18 @@ const CourseTable = ({ courses }) => {
     setCurrentPage(page);
   };
 
-  const courseData = paginate(courses, currentPage, perPage);
+  //handlesearch
+  const [search, setsearch] = useState("");
+  const [courselistforsearch, setcourselistforsearch] = useState([]);
+
+  useEffect(() => {
+    setcourselistforsearch(courses);
+  }, [courses]);
+  const filteredCoursesSearch = courselistforsearch.filter((el) =>
+    el.title.includes(search)
+  );
+  //courses courseData
+  const courseData = paginate(filteredCoursesSearch, currentPage, perPage);
   // modal
   const [modal, setModal] = useState(false); //for create course
   const [modalforedit, setmodalforedit] = useState(false); //for edit coures
@@ -59,6 +70,8 @@ const CourseTable = ({ courses }) => {
                   float: "left",
                   marginLeft: "2em",
                 }}
+                value={search}
+                onChange={(e) => setsearch(e.target.value)}
               />
             </div>
             <table className="table">
@@ -108,7 +121,7 @@ const CourseTable = ({ courses }) => {
           </div>
           <div className="navbar-fixed-bottom text-center footer">
             <Pagination
-              totalpages={courses.length}
+              totalpages={filteredCoursesSearch.length}
               currentpage={currentPage}
               perpage={perPage}
               handlePageChage={handlePageChage}
