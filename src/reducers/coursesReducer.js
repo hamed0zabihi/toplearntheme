@@ -4,6 +4,8 @@ export const courcesReducer = (state = [], action) => {
       return [...action.payload];
     case "CREATE_COURSE":
       return [...action.payload];
+    case "UPDATE_COURSE":
+      return [...action.payload];
     default:
       return state;
   }

@@ -1,28 +1,45 @@
-import React, { useState } from "react";
-import { Dialog, DialogOverlay, DialogContent } from "@reach/dialog";
+import React, { useEffect, useState } from "react";
+import { DialogOverlay, DialogContent } from "@reach/dialog";
 import { useDispatch } from "react-redux";
-import { CreateNewCourse } from "../../actions/courses";
-const AddNewCourse = ({ toggle, modal }) => {
-  const [title, setTitle] = useState();
-  const [price, setPrice] = useState();
-  const [info, setInfo] = useState();
+import { UpdateCourse } from "../../actions/courses";
+const EditCourseModal = ({ toggle, modal, course }) => {
+  const [title, settitle] = useState();
+  const [price, setprice] = useState();
+  const [imageUrl, setimageUrl] = useState();
+  const [info, setinfo] = useState();
+  const [courseid, setcourseid] = useState();
   const dispatch = useDispatch();
+  useEffect(() => {
+    setcourseid(course._id);
+    settitle(course.title);
+    setprice(course.price);
+    setimageUrl(course.imageUrl);
+    setinfo(course.info);
+
+    return () => {
+      setcourseid();
+      settitle();
+      setprice();
+      setimageUrl();
+      setinfo();
+    };
+  }, [course]);
   const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      let data = new FormData();
-      data.append("title", title);
-      data.append("price", Number.parseInt(price)); //string to number
-      data.append("imageUrl", e.target.imageUrl.files[0]);
-      data.append("info", info);
 
-      console.log("data", ...data);
-      //dispatch
-      dispatch(CreateNewCourse(data));
-      toggle();
-    } catch (error) {
-      console.log(error);
+    let data = new FormData();
+    data.append("_id", courseid);
+    data.append("title", title);
+    data.append("price", Number.parseInt(price));
+    if (e.target.imageUrl.files[0]) {
+      data.append("imageUrl", e.target.imageUrl.files[0]);
+    } else {
+      data.append("imageUrl", imageUrl);
     }
+    data.append("info", info);
+    //dispatch
+    dispatch(UpdateCourse(courseid, data));
+    toggle();
   };
   return (
     <div>
@@ -46,7 +63,7 @@ const AddNewCourse = ({ toggle, modal }) => {
                 placeholder="عنوان دوره"
                 aria-describedby="title"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => settitle(e.target.value)}
               />
 
               <input
@@ -57,7 +74,7 @@ const AddNewCourse = ({ toggle, modal }) => {
                 placeholder="قیمت دوره به تومان"
                 aria-describedby="price"
                 value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                onChange={(e) => setprice(e.target.value)}
               />
 
               <input
@@ -73,7 +90,7 @@ const AddNewCourse = ({ toggle, modal }) => {
                 className="form-control"
                 style={{ marginBottom: 3 }}
                 value={info}
-                onChange={(e) => setInfo(e.target.value)}
+                onChange={(e) => setinfo(e.target.value)}
               />
 
               <button
@@ -81,7 +98,7 @@ const AddNewCourse = ({ toggle, modal }) => {
                 className="btn btn-success "
                 style={{ margin: "1em" }}
               >
-                ثبت دوره
+                ویرایش{" "}
               </button>
               <button
                 className="btn btn-warning mr-5"
@@ -98,4 +115,4 @@ const AddNewCourse = ({ toggle, modal }) => {
   );
 };
 
-export default AddNewCourse;
+export default EditCourseModal;

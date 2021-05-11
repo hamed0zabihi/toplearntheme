@@ -1,4 +1,8 @@
-import { getCourses, NewCourse } from "../services/getCources";
+import {
+  getCourses,
+  NewCourse,
+  sendCourseForUpdate,
+} from "../services/getCources";
 import { SuccessMessage } from "../components/common/ToastMassage";
 
 export const getAllCourses = () => {
@@ -17,5 +21,31 @@ export const CreateNewCourse = (course) => {
       type: "CREATE_COURSE",
       payload: [...getState().courses, data.course],
     });
+  };
+};
+
+export const UpdateCourse = (id, updatedcourse) => {
+  return async (dispatch, getState) => {
+    const courses = [...getState().courses];
+    const updatedCourses = [...courses];
+    const findIndexCourseUpdated = updatedCourses.findIndex(
+      (el) => el._id === id
+    );
+    let corse = updatedCourses[findIndexCourseUpdated];
+    corse = { ...Object.fromEntries(updatedcourse) };
+    console.log(corse);
+    updatedCourses[findIndexCourseUpdated] = corse;
+    try {
+      await dispatch({ type: "UPDATE_COURSE", payload: [...updatedCourses] });
+      const { data, status } = await sendCourseForUpdate(id, updatedcourse);
+      if (status === 200) {
+        console.log(data);
+        SuccessMessage("با موفقیت در پایگاه داده آپدیت شد");
+      }
+    } catch (ex) {
+      await dispatch({ type: "UPDATE_COURSE", payload: [...courses] });
+
+      console.log(ex);
+    }
   };
 };

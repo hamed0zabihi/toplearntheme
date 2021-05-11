@@ -26,7 +26,7 @@ const Course = ({ coursess }) => {
               <h2>
                 <Link to={`/single/${courses._id}`}>{courses.title} </Link>
               </h2>
-              <span> رایگان </span>
+              <span> {courses.price} تومان </span>
               <i>1:52:32</i>
             </article>
           </div>

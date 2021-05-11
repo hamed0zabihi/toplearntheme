@@ -14,3 +14,6 @@ export const getCourse = (id) => {
 export const NewCourse = (course) => {
   return http.post(`${config.ghorbaniApi}/api/course`, course);
 };
+export const sendCourseForUpdate = (id, course) => {
+  return http.put(`${config.ghorbaniApi}/api/course/${id}`, course);
+};

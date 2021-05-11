@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Helmet from "react-helmet";
 import AdminTopNav from "../admin/AdminTopNav";
 import AdminSidebar from "../admin/AdminSidebar";
+import { ToastContainer } from "react-toastify";
 
 const PrivateLayout = ({ children }) => {
   const user = useSelector((state) => state.user);
@@ -24,6 +25,7 @@ const PrivateLayout = ({ children }) => {
         <AdminSidebar />
       </nav>
       <div id="page-wrapper">{children}</div>
+      <ToastContainer />
     </div>
   );
 };

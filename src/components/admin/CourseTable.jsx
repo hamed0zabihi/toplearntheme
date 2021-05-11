@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Pagination from "../common/pagination";
 import { paginate } from "../common/paginate";
 import AddNewCourse from "./AddNewCourse";
+import EditCourseModal from "./EditCourse";
 
 const CourseTable = ({ courses }) => {
   // console.log("courses in coursetable", courses);
@@ -15,9 +16,15 @@ const CourseTable = ({ courses }) => {
   const courseData = paginate(courses, currentPage, perPage);
   // modal
   const [modal, setModal] = useState(false);
+  const [modalforedit, setmodalforedit] = useState(false);
+  const [CurrentCourseForEdit, setCurrentCourseForEdit] = useState({});
 
   const toggle = () => setModal(!modal);
-
+  const toggleForEdite = () => setmodalforedit(!modalforedit);
+  const openModalEdit = (course) => {
+    setmodalforedit(true);
+    setCurrentCourseForEdit(course);
+  };
   return (
     <React.Fragment>
       <section style={{ marginTop: "5em", marginRight: "2em" }}>
@@ -72,7 +79,12 @@ const CourseTable = ({ courses }) => {
                     </td>
                     <td>{course.price === 0 ? "رایگان" : `${course.price}`}</td>
                     <td>
-                      <button className="btn btn-warning">ویرایش</button>
+                      <button
+                        className="btn btn-warning"
+                        onClick={() => openModalEdit(course)}
+                      >
+                        ویرایش
+                      </button>
                     </td>
                     <td>
                       <button className="btn btn-danger">حذف</button>
@@ -90,7 +102,12 @@ const CourseTable = ({ courses }) => {
               handlePageChage={handlePageChage}
             />
           </div>
-          <AddNewCourse toggle={toggle} modal={modal} /> tes
+          <AddNewCourse toggle={toggle} modal={modal} />
+          <EditCourseModal
+            toggle={toggleForEdite}
+            modal={modalforedit}
+            course={CurrentCourseForEdit}
+          />
         </div>
       </section>
     </React.Fragment>
