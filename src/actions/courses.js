@@ -32,23 +32,28 @@ export const UpdateCourse = (id, updatedcourse) => {
   return async (dispatch, getState) => {
     const courses = [...getState().courses];
     const updatedCourses = [...courses];
-    const findIndexCourseUpdated = updatedCourses.findIndex(
-      (el) => el._id === id
-    );
-    let corse = updatedCourses[findIndexCourseUpdated];
-    corse = { ...Object.fromEntries(updatedcourse) };
-    console.log(corse);
-    updatedCourses[findIndexCourseUpdated] = corse;
+    const filteredCoursess = updatedCourses.filter((el) => el._id !== id);
+
+    // const findIndexCourseUpdated = updatedCourses.findIndex(
+    //   (el) => el._id === id
+    // );
+    // let corse = updatedCourses[findIndexCourseUpdated];
+    // corse = { ...Object.fromEntries(updatedcourse) };
+    // console.log(corse);
+    // updatedCourses[findIndexCourseUpdated] = corse;
     try {
-      await dispatch({ type: "UPDATE_COURSE", payload: [...updatedCourses] });
+      // await dispatch({ type: "UPDATE_COURSE", payload: [...updatedCourses] });
       const { data, status } = await sendCourseForUpdate(id, updatedcourse);
       if (status === 200) {
-        console.log(data);
+        console.log("dataCourses", data.course);
+        await dispatch({
+          type: "UPDATE_COURSE",
+          payload: [...filteredCoursess, data.course],
+        });
         SuccessMessage("با موفقیت در پایگاه داده آپدیت شد");
       }
     } catch (ex) {
-      await dispatch({ type: "UPDATE_COURSE", payload: [...courses] });
-
+      ErrorMessage("عملیات بروز رسانی ناموفق میباشد.");
       console.log(ex);
     }
   };
