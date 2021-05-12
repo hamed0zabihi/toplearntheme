@@ -4,6 +4,7 @@ import { paginate } from "../common/paginate";
 import AddNewCourse from "./AddNewCourse";
 import EditCourseModal from "./EditCourse";
 import DeleteCourseModal from "./DeleteCourseModal";
+import { orderBy } from "lodash";
 
 const CourseTable = ({ courses }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,6 +25,22 @@ const CourseTable = ({ courses }) => {
   );
   //courses courseData
   const courseData = paginate(filteredCoursesSearch, currentPage, perPage);
+  //sort price and title
+  const [firstClickforSort, setfirstClickforSort] = useState(false);
+  const [sorting, setsorting] = useState("");
+
+  const toggleSorting = (feildName) => {
+    if (firstClickforSort) {
+      setsorting("desc");
+    } else {
+      setsorting("asc");
+    }
+    sortingfilteredCoursesSearch(feildName);
+  };
+  const sortingfilteredCoursesSearch = (fieldName) => {
+    setcourselistforsearch(orderBy(courselistforsearch, fieldName, sorting));
+    setfirstClickforSort(!firstClickforSort);
+  };
   // modal
   const [modal, setModal] = useState(false); //for create course
   const [modalforedit, setmodalforedit] = useState(false); //for edit coures
@@ -77,9 +94,21 @@ const CourseTable = ({ courses }) => {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col">عنوان دوره</th>
+                  <th scope="col">
+                    عنوان دوره{" "}
+                    <i
+                      class="zmdi zmdi-sort-asc"
+                      onClick={() => toggleSorting("title")}
+                    ></i>
+                  </th>
                   <th scope="col">تصویر دوره</th>
-                  <th scope="col">قیمت دوره (تومان)</th>
+                  <th scope="col">
+                    قیمت دوره (تومان){" "}
+                    <i
+                      class="zmdi zmdi-sort-asc"
+                      onClick={() => toggleSorting("price")}
+                    ></i>
+                  </th>
                   <th scope="col">ویرایش</th>
                   <th scope="col">حذف</th>
                 </tr>
