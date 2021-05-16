@@ -16,7 +16,7 @@ const TopNav = () => {
                 {" "}
                 صفحه اصلی
               </NavLink>
-              <NavLink to="/aboutus"> درباره ما </NavLink>
+              <NavLink to="/archive"> دوره‌ها</NavLink>
               <NavLink to="/contactus"> تماس با ما </NavLink>
             </li>
           </ul>

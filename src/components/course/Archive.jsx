@@ -1,23 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { paginate } from "../common/paginate";
 import Pagination from "../common/pagination";
 import Course from "./Course";
+import { orderBy } from "lodash";
 
 const Archive = () => {
+  //get all courses
   const courses = useSelector((state) => state.courses);
   // if use api jasonplaceholder.com
-  const allCourses = Object.values(courses);
+  // const allCourses = Object.values(courses);
+  //search
+  const [search, setsearch] = useState("");
+  const [filteredSearch, setfilteredSearch] = useState([]);
+  useEffect(() => {
+    setfilteredSearch(courses);
+  }, [courses]);
+  //
+  const coursesForPagination = filteredSearch.filter((el) =>
+    el.title.includes(search)
+  );
+  ////filter radio top
+  const [topFilterRadio, setTopFilterRadio] = useState("all");
+  const filterRaio = (n) => {
+    console.log("1111topFilterRadio", n);
+    switch (n) {
+      case "all":
+        setfilteredSearch(courses);
+        setcurrentpage(1);
+        break;
+      case "free":
+        const freeCourse = filteredSearch.filter((el) => el.price === 0);
+        setfilteredSearch(freeCourse);
 
-  // const allCourses = courses;
+        setcurrentpage(1);
+        console.log("free case");
+        break;
+      case "off":
+        setfilteredSearch(filteredSearch.filter((el) => el.price !== 0));
+        setcurrentpage(1);
+        break;
+    }
+  };
+
+  // for pagination options
   const [perpage, setperpage] = useState(8);
-  const [selectall, setSelectall] = useState();
+
   const [currentpage, setcurrentpage] = useState(1);
   const handlePageChage = (page) => {
     setcurrentpage(page);
   };
-  const archiveCourses = paginate(allCourses, currentpage, perpage);
+
+  //pagination
+  const archiveCourses = paginate(coursesForPagination, currentpage, perpage);
+
   return (
     <React.Fragment>
       <div className="container">
@@ -45,7 +82,7 @@ const Archive = () => {
                 {" "}
                 دوره های <span> برنامه نویسی وب </span>{" "}
               </h1>{" "}
-              <span> {allCourses.length} دوره </span>
+              <span> {courses.length} دوره </span>
             </header>
 
             <div className="row">
@@ -56,6 +93,7 @@ const Archive = () => {
                       type="text"
                       name=""
                       placeholder="موضوع مورد نظر ..."
+                      onChange={(e) => setsearch(e.target.value)}
                     />
                     <button>
                       <i className="zmdi zmdi-search"></i>
@@ -64,14 +102,19 @@ const Archive = () => {
                 </form>
               </div>
               <div className="col-md-4 col-sm-6 col-xs-12 pull-right">
-                <div className="switch-field available">
+                <div
+                  className="switch-field available"
+                  onChange={(e) => {
+                    // filterRaio(e);
+                    setTopFilterRadio(e.target.value);
+                    filterRaio(e.target.value);
+                  }}
+                >
                   <input
                     id="available-filter-1"
                     name="available"
                     value="all"
-                    onChange={(e) => {
-                      setSelectall(e.currentTarget.checked);
-                    }}
+                    defaultChecked
                     type="radio"
                   />
                   <label htmlFor="available-filter-1"> همه </label>
@@ -85,7 +128,7 @@ const Archive = () => {
                   <input
                     id="available-filter-3"
                     name="available"
-                    value="normal"
+                    value="free"
                     type="radio"
                   />
                   <label htmlFor="available-filter-3"> رایگان </label>
@@ -193,7 +236,7 @@ const Archive = () => {
                   <Course coursess={archiveCourses} />
                 </div>
                 <Pagination
-                  totalpages={allCourses.length}
+                  totalpages={coursesForPagination.length}
                   currentpage={currentpage}
                   perpage={perpage}
                   handlePageChage={handlePageChage}
