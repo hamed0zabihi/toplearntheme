@@ -24,26 +24,32 @@ const Archive = () => {
   ////filter radio top
   const [topFilterRadio, setTopFilterRadio] = useState("all");
   const filterRaio = (n) => {
-    console.log("1111topFilterRadio", n);
     switch (n) {
       case "all":
         setfilteredSearch(courses);
         setcurrentpage(1);
         break;
       case "free":
-        const freeCourse = filteredSearch.filter((el) => el.price === 0);
+        const freeCourse = courses.filter((el) => el.price === 0);
         setfilteredSearch(freeCourse);
 
         setcurrentpage(1);
         console.log("free case");
         break;
       case "off":
-        setfilteredSearch(filteredSearch.filter((el) => el.price !== 0));
+        setfilteredSearch(courses.filter((el) => el.price !== 0));
+        setcurrentpage(1);
+        break;
+      default:
+        setfilteredSearch(courses);
         setcurrentpage(1);
         break;
     }
   };
-
+  //sorting top page
+  const sorting = (fieldName) => {
+    setfilteredSearch(orderBy(filteredSearch, fieldName, "asc"));
+  };
   // for pagination options
   const [perpage, setperpage] = useState(8);
 
@@ -135,12 +141,17 @@ const Archive = () => {
                 </div>
               </div>
               <div className="col-md-4 col-sm-6 col-xs-12 pull-left">
-                <div className="select-ddl">
+                <div
+                  className="select-ddl"
+                  onChange={
+                    (e) => sorting(e.target.value)
+                    // (e) => setfilteredSearch(filteredSearch.sort())
+                  }
+                >
                   <select>
-                    <option> مرتب سازی </option>
-                    <option> قیمت </option>
-                    <option> مدرت زمان دوره </option>
-                    <option> تاریخ انتشار </option>
+                    <option value="_id"> مرتب سازی </option>
+                    <option value="price"> قیمت </option>
+                    <option value="title">الفبا </option>
                   </select>
                 </div>
               </div>
