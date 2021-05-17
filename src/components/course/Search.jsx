@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { paginate } from "../common/paginate";
 import Pagination from "../common/pagination";
 import Course from "./Course";
-import { orderBy } from "lodash";
+import { isEmpty, isUndefined, orderBy } from "lodash";
 
-const Archive = () => {
+const Search = ({ match }) => {
   //get all courses
   const courses = useSelector((state) => state.courses);
   // if use api jasonplaceholder.com
   // const allCourses = Object.values(courses);
   //search
+
+  const [searchedWord, setsearchedWord] = useState("");
   const [search, setsearch] = useState("");
   const [filteredSearch, setfilteredSearch] = useState([]);
   useEffect(() => {
@@ -21,6 +23,16 @@ const Archive = () => {
   const coursesForPagination = filteredSearch.filter((el) =>
     el.title.includes(search)
   );
+  ///search passed
+  console.log("match:", match);
+  const searched = match.params.searched;
+  console.log("searched", searched);
+  useEffect(() => {
+    if (!isEmpty(searched) && !isUndefined(searched)) {
+      setsearch(searched);
+    }
+  }, []);
+
   ////filter radio top
   const [topFilterRadio, setTopFilterRadio] = useState("all");
   const filterRaio = (n) => {
@@ -98,6 +110,7 @@ const Archive = () => {
                     <input
                       type="text"
                       name=""
+                      value={search}
                       placeholder="موضوع مورد نظر ..."
                       onChange={(e) => setsearch(e.target.value)}
                     />
@@ -239,15 +252,21 @@ const Archive = () => {
 
             <div className="col-lg-9 col-md-8 col-sm-12 col-xs-12">
               <section className="terms-items">
-                <div className="row">
-                  <Course coursess={archiveCourses} />
-                </div>
-                <Pagination
-                  totalpages={coursesForPagination.length}
-                  currentpage={currentpage}
-                  perpage={perpage}
-                  handlePageChage={handlePageChage}
-                />
+                {coursesForPagination.length === 0 ? (
+                  <p>نتیجه ای یافت نشد!</p>
+                ) : (
+                  <React.Fragment>
+                    <div className="row">
+                      <Course coursess={archiveCourses} />
+                    </div>
+                    <Pagination
+                      totalpages={coursesForPagination.length}
+                      currentpage={currentpage}
+                      perpage={perpage}
+                      handlePageChage={handlePageChage}
+                    />
+                  </React.Fragment>
+                )}
               </section>
             </div>
           </div>
@@ -257,4 +276,4 @@ const Archive = () => {
   );
 };
 
-export default Archive;
+export default Search;
