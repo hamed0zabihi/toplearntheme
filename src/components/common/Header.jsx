@@ -1,6 +1,8 @@
-import React from "react";
-
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 const Header = () => {
+  const [searchedWord, setsearchedWord] = useState("");
+  console.log("searchedWord", searchedWord);
   return (
     <React.Fragment>
       <header>
@@ -13,10 +15,21 @@ const Header = () => {
       </header>
       <div className="search-form">
         <form>
-          <input type="text" name="" placeholder="چی دوست داری یاد بگیری ؟" />
-          <button>
-            <i className="zmdi zmdi-search"></i>
-          </button>
+          <input
+            type="text"
+            name="searchedWord"
+            placeholder="چی دوست داری یاد بگیری ؟"
+            onChange={(e) => setsearchedWord(e.target.value)}
+          />
+
+          <NavLink
+            activeStyle={{ color: "lime" }}
+            to={`/search/${searchedWord}`}
+          >
+            <button>
+              <i className="zmdi zmdi-search"></i>
+            </button>
+          </NavLink>
         </form>
       </div>
     </React.Fragment>
