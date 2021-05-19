@@ -13,7 +13,6 @@ const TopNav = () => {
           <ul>
             <li>
               <NavLink activeStyle={{ color: "lime" }} to="/" exact>
-                {" "}
                 صفحه اصلی
               </NavLink>
               <NavLink to="/archive"> دوره‌ها</NavLink>

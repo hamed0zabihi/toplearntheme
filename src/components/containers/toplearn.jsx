@@ -17,7 +17,6 @@ import PrivateLayout from "../layouts/PrivateLaout";
 import Dashboard from "../admin/Dashboard";
 import { isEmpty } from "lodash";
 import CourseTable from "../admin/CourseTable";
-import AddNewCourse from "../admin/AddNewCourse";
 import Search from "../course/Search";
 
 // import jwt form "jsonwebtoken";
@@ -26,6 +25,7 @@ const Toplearn = () => {
   const courses = useSelector((state) => state.courses);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+
   // const coursess = Object.values(courses);
   // console.log(courses);
   // if api is jasonplaceholder
@@ -37,6 +37,7 @@ const Toplearn = () => {
     if (token) {
       const decodedToken = decodeToken(token);
       const dateNow = Date.now() / 1000;
+
       // const expireTime = localStorage.getItem("expireTime");
       // const userName = localStorage.getItem("userName");
       // const user = { email: token, name: userName };
