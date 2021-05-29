@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 const Header = () => {
   const [searchedWord, setsearchedWord] = useState("");
-  console.log("searchedWord", searchedWord);
+  // console.log("searchedWord", searchedWord);
   return (
     <React.Fragment>
       <header>

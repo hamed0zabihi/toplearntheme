@@ -1,4 +1,12 @@
-const AsideCourse = () => {
+import { useDispatch, useSelector } from "react-redux";
+import { AddToCart } from "../../actions/cart";
+const AsideCourse = ({ price, id }) => {
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    dispatch(AddToCart(id));
+  };
   return (
     <aside className="col-md-4 col-sm-12 col-xs-12 pull-right">
       <div className="statistics">
@@ -16,8 +24,15 @@ const AsideCourse = () => {
             <i> 52 نفر </i>
           </li>
         </ul>
-
-        <a href=""> شرکت در دوره : 450.000 تومان </a>
+        {cart.addedProductIds.indexOf(id) !== -1 ? (
+          <button class="center-block btn btn-default " disabled>
+            موجود در سبد خرید{" "}
+          </button>
+        ) : (
+          <a href="/#" onClick={handleAddToCart}>
+            شرکت در دوره : {price} تومان
+          </a>
+        )}
       </div>
 
       <article className="teacher-info">
@@ -34,7 +49,7 @@ const AsideCourse = () => {
         <ul>
           <li>سطح دوره: پیشرفته</li>
           <li>وضعیت دوره: در حال برگزاری</li>
-          <li>قیمت : 450,000 تومان</li>
+          <li>قیمت : {price} تومان</li>
           <li>تاریخ ثبت این دوره : چهار شنبه ۲۱ شهریور ۱۳۹۷</li>
           <li>آخرین بروزرسانی دوره : چهار شنبه ۲۱ شهریور ۱۳۹۷</li>
         </ul>

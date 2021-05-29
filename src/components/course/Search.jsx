@@ -24,9 +24,9 @@ const Search = ({ match }) => {
     el.title.includes(search)
   );
   ///search passed
-  console.log("match:", match);
+  // console.log("match:", match);
   const searched = match.params.searched;
-  console.log("searched", searched);
+  // console.log("searched", searched);
   useEffect(() => {
     if (!isEmpty(searched) && !isUndefined(searched)) {
       setsearch(searched);
