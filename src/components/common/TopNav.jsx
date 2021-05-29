@@ -17,6 +17,7 @@ const TopNav = () => {
               </NavLink>
               <NavLink to="/archive"> دوره‌ها</NavLink>
               <NavLink to="/contactus"> تماس با ما </NavLink>
+              <NavLink to="/cart"> سبد خرید </NavLink>
             </li>
           </ul>
         </div>

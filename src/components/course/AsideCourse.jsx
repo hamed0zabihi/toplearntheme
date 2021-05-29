@@ -1,12 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
-import { AddToCart } from "../../actions/cart";
-const AsideCourse = ({ price, id }) => {
+import { AddToCart, RemoveFromCart, ClearCart } from "../../actions/cart";
+const AsideCourse = ({ price, id, course }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const handleAddToCart = (e) => {
     e.preventDefault();
-    dispatch(AddToCart(id));
+    dispatch(AddToCart(course));
   };
+  const handleRemoveToCart = (e) => {
+    e.preventDefault();
+    dispatch(RemoveFromCart(course));
+  };
+  if (cart.items.find((el) => el._id === id)) {
+    console.log(true);
+  } else {
+    console.log(false);
+  }
   return (
     <aside className="col-md-4 col-sm-12 col-xs-12 pull-right">
       <div className="statistics">
@@ -24,8 +33,12 @@ const AsideCourse = ({ price, id }) => {
             <i> 52 نفر </i>
           </li>
         </ul>
-        {cart.addedProductIds.indexOf(id) !== -1 ? (
-          <button class="center-block btn btn-default " disabled>
+
+        {cart.items.find((el) => el._id === id) ? (
+          <button
+            class="center-block btn btn-default "
+            onClick={handleRemoveToCart}
+          >
             موجود در سبد خرید{" "}
           </button>
         ) : (
@@ -42,6 +55,7 @@ const AsideCourse = ({ price, id }) => {
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
           از طراحان گرافیک است استفاده از طراحان گرافیک است ...
         </p>
+        <button onClick={() => dispatch(ClearCart())}>remove</button>
       </article>
 
       <article className="term-info">

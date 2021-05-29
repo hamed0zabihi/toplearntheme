@@ -18,6 +18,7 @@ import Dashboard from "../admin/Dashboard";
 import { isEmpty } from "lodash";
 import CourseTable from "../admin/CourseTable";
 import Search from "../course/Search";
+import Cart from "../cart/Cart";
 
 // import jwt form "jsonwebtoken";
 
@@ -94,6 +95,7 @@ const Toplearn = () => {
             <Route path="/login" component={Login} />
             <Route path="/profile" component={Profile} />
             <Route path="/archive" component={Archive} />
+            <Route path="/cart" component={Cart} />
             <Route path="/search/:searched" component={Search} />
             <Route path="/single/:id" component={SingleCourse} />
             <Route

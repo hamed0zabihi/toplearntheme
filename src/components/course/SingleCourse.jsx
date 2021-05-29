@@ -111,7 +111,11 @@ const SingleCourse = ({ match }) => {
                 <CommentCourse />
               </div>
 
-              <AsideCourse price={course.price} id={course._id} />
+              <AsideCourse
+                price={course.price}
+                id={course._id}
+                course={course}
+              />
             </div>
           ) : null}
         </section>
