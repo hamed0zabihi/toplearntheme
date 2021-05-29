@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { isEmpty } from "lodash";
 import { getSingleCourse } from "../../actions/course";
+
 import ShowImage from "../common/ShowImage";
 import courseIdValidator from "../common/courseIdvadilator";
 import { Redirect } from "react-router";
@@ -110,7 +111,7 @@ const SingleCourse = ({ match }) => {
                 <CommentCourse />
               </div>
 
-              <AsideCourse />
+              <AsideCourse price={course.price} id={course._id} />
             </div>
           ) : null}
         </section>
