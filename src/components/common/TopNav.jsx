@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { isEmpty } from "lodash";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const TopNav = () => {
   const user = useSelector((state) => state.user);
+  const cart = useSelector((state) => state.cart);
 
   return (
     <nav>
@@ -17,7 +18,26 @@ const TopNav = () => {
               </NavLink>
               <NavLink to="/archive"> دوره‌ها</NavLink>
               <NavLink to="/contactus"> تماس با ما </NavLink>
-              <NavLink to="/cart"> سبد خرید </NavLink>
+              {cart.items.length ? (
+                <NavLink to="/cart">
+                  <i class="fa fa-shopping-cart "></i>
+                  <span
+                    class="counter counter-lg"
+                    style={{
+                      top: "-12px",
+                      position: "relative",
+                      backgroundColor: "#fe1212",
+                      color: "#fe1212",
+                      backgroundColor: "lime",
+                      borderRadius: "10em",
+                      padding: "0px 4px",
+                      lineHeight: "14px",
+                    }}
+                  >
+                    {cart.items.length}
+                  </span>
+                </NavLink>
+              ) : null}
             </li>
           </ul>
         </div>

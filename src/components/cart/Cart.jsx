@@ -1,8 +1,9 @@
 import { isEmpty } from "lodash";
 import React from "react";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { RemoveFromCart, ClearCart } from "../../actions/cart";
 const Cart = () => {
+  const dispatch = useDispatch();
   const carts = useSelector((state) => state.cart);
   const totlPrice = carts.items.reduce((x, price) => x + price.price, 0);
   return (
@@ -20,7 +21,14 @@ const Cart = () => {
               <tbody>
                 {carts.items.map((el) => (
                   <tr key={el._id}>
-                    <td className="text-center">{el.title}</td>
+                    <td className="text-center">
+                      <span
+                        className="fa fa-trash "
+                        style={{ color: "red" }}
+                        onClick={() => dispatch(RemoveFromCart(el))}
+                      ></span>
+                      {el.title}
+                    </td>
                     <td className="text-center">{el.price}</td>
                   </tr>
                 ))}
@@ -31,6 +39,9 @@ const Cart = () => {
               </tbody>
             </table>
           </ul>
+          <button onClick={() => dispatch(ClearCart())}>
+            پاک کردن سبد خرید
+          </button>
         </>
       ) : (
         <div className="alert alert-danger">سبد خرید خالی می باشد </div>

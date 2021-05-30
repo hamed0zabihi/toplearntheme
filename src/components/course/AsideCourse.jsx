@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { AddToCart, RemoveFromCart, ClearCart } from "../../actions/cart";
+import { Link } from "react-router-dom";
+import { AddToCart } from "../../actions/cart";
 const AsideCourse = ({ price, id, course }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
@@ -7,10 +8,7 @@ const AsideCourse = ({ price, id, course }) => {
     e.preventDefault();
     dispatch(AddToCart(course));
   };
-  const handleRemoveToCart = (e) => {
-    e.preventDefault();
-    dispatch(RemoveFromCart(course));
-  };
+
   if (cart.items.find((el) => el._id === id)) {
     console.log(true);
   } else {
@@ -35,12 +33,11 @@ const AsideCourse = ({ price, id, course }) => {
         </ul>
 
         {cart.items.find((el) => el._id === id) ? (
-          <button
-            class="center-block btn btn-default "
-            onClick={handleRemoveToCart}
-          >
-            موجود در سبد خرید{" "}
-          </button>
+          <Link to="/cart" style={{ backgroundColor: "transparent" }}>
+            <button class="center-block btn btn-default ">
+              موجود در سبد خرید<i className="fa fa-shopping-cart"></i>
+            </button>
+          </Link>
         ) : (
           <a href="/#" onClick={handleAddToCart}>
             شرکت در دوره : {price} تومان
@@ -55,7 +52,6 @@ const AsideCourse = ({ price, id, course }) => {
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
           از طراحان گرافیک است استفاده از طراحان گرافیک است ...
         </p>
-        <button onClick={() => dispatch(ClearCart())}>remove</button>
       </article>
 
       <article className="term-info">
