@@ -48,7 +48,7 @@ const CommentCourse = () => {
                   </div>
                 </div>
                 <div className="col-md-4 col-sm-5 col-xs-5">
-                  <img src="../images/captcha.jpg" />
+                  <img src="../images/captcha.jpg" alt="captcha" />
                 </div>
               </div>
             </div>
@@ -63,7 +63,7 @@ const CommentCourse = () => {
 
         <div className="comment-list">
           <div className="comment-row">
-            <img src="../images/pic/avatar.jpg" />
+            <img src="../images/pic/avatar.jpg" alt="avatar" />
             <div className="left-col">
               <h3> میترا رحیمی </h3>
               <span>12/03/1397</span>
@@ -76,7 +76,7 @@ const CommentCourse = () => {
           </div>
 
           <div className="comment-row">
-            <img src="../images/pic/avatar.jpg" />
+            <img src="../images/pic/avatar.jpg" alt="avatar" />
             <div className="left-col">
               <h3> میترا رحیمی </h3>
               <span>12/03/1397</span>
@@ -89,7 +89,7 @@ const CommentCourse = () => {
           </div>
 
           <div className="comment-row">
-            <img src="../images/pic/avatar.jpg" />
+            <img src="../images/pic/avatar.jpg" alt="avatar" />
             <div className="left-col">
               <h3> میترا رحیمی </h3>
               <span>12/03/1397</span>
@@ -102,7 +102,7 @@ const CommentCourse = () => {
           </div>
 
           <div className="comment-row">
-            <img src="../images/pic/avatar.jpg" />
+            <img src="../images/pic/avatar.jpg" alt="avatar" />
             <div className="left-col">
               <h3> میترا رحیمی </h3>
               <span>12/03/1397</span>
@@ -115,7 +115,7 @@ const CommentCourse = () => {
           </div>
 
           <div className="comment-row">
-            <img src="../images/pic/avatar.jpg" />
+            <img src="../images/pic/avatar.jpg" alt="avatar" />
             <div className="left-col">
               <h3> میترا رحیمی </h3>
               <span>12/03/1397</span>
@@ -130,29 +130,29 @@ const CommentCourse = () => {
           <nav aria-label="Page navigation">
             <ul className="pagination justify-content-center">
               <li className="page-item">
-                <a className="page-link" href="#" aria-label="Previous">
+                <a className="page-link" href="/#" aria-label="Previous">
                   <span aria-hidden="true">
                     <i className="zmdi zmdi-chevron-right"></i>
                   </span>
                 </a>
               </li>
               <li className="page-item">
-                <a className="page-link" href="#">
+                <a className="page-link" href="/#">
                   1
                 </a>
               </li>
               <li className="page-item">
-                <a className="page-link" href="#">
+                <a className="page-link" href="/#">
                   2
                 </a>
               </li>
               <li className="page-item">
-                <a className="page-link" href="#">
+                <a className="page-link" href="/#">
                   3
                 </a>
               </li>
               <li className="page-item">
-                <a className="page-link" href="#" aria-label="Next">
+                <a className="page-link" href="/#" aria-label="Next">
                   <span aria-hidden="true">
                     <i className="zmdi zmdi-chevron-left"></i>
                   </span>

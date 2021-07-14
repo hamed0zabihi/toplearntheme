@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { DialogOverlay, DialogContent } from "@reach/dialog";
@@ -13,7 +12,7 @@ const DeleteCourseModal = ({ toggle, modal, id }) => {
     dispatch(DeleteCourseAction(id));
     toggle();
   };
-  console.log("course:", course);
+
   return (
     <div>
       <DialogOverlay
@@ -26,12 +25,12 @@ const DeleteCourseModal = ({ toggle, modal, id }) => {
           style={{ boxShadow: "0px 10px 50px hsla(0, 0%, 0%, 0.33)" }}
         >
           <div className="inner form-layer">
-            <div class="alert alert-danger" role="alert">
-              <i class="zmdi zmdi-alert-triangle"></i>
+            <div className="alert alert-danger" role="alert">
+              <i className="zmdi zmdi-alert-triangle"></i>
               هشدار!از پاک کردن دروه با مشخصات زیر مطمئن هستید!؟
             </div>
             {!isEmpty(course) ? (
-              <table class="table">
+              <table className="table">
                 <thead>
                   <tr>
                     <th scope="col">#</th>

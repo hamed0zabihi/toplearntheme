@@ -23,7 +23,7 @@ function checkMenu() {
         $(".caret-icon").remove();
         $('.main-menu nav > ul > li').each(function(){
             if($(this).find('ul').length > 0) {
-                $(this).append("<span class='caret-icon'><i class='zmdi zmdi-chevron-down'></i></span>");
+                $(this).append("<span className='caret-icon'><i className='zmdi zmdi-chevron-down'></i></span>");
             } 
         });
         $('.main-menu nav > ul > li > .caret-icon').click(function(){

@@ -12,12 +12,12 @@ import AsideCourse from "./AsideCourse";
 const SingleCourse = ({ match }) => {
   const dispatch = useDispatch();
   const course = useSelector((state) => state.course);
+  const matchParamsId = match.params.id;
   useEffect(() => {
-    if (courseIdValidator(match.params.id)) {
-      dispatch(getSingleCourse(match.params.id));
+    if (courseIdValidator(matchParamsId)) {
+      dispatch(getSingleCourse(matchParamsId));
     }
-    // Math.round((match.params.id + 1) % 8) + 1
-  }, []);
+  }, [dispatch, matchParamsId]);
   if (!courseIdValidator(match.params.id)) {
     return <Redirect to="/notfoundig" />;
   }
@@ -27,14 +27,13 @@ const SingleCourse = ({ match }) => {
         <nav aria-label="breadcrumb">
           <ul className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="#"> تاپ لرن </a>
+              <a href="/#"> تاپ لرن </a>
             </li>
             <li className="breadcrumb-item active">
-              <a href="#"> دوره ها </a>
+              <a href="/#"> دوره ها </a>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-              {" "}
-              دوره آموزشی ساخت ربات تلگرام{" "}
+              دوره آموزشی ساخت ربات تلگرام
             </li>
           </ul>
         </nav>

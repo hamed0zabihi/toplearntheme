@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Img } from "react-image";
 import ReactLoading from "react-loading";
 const ShowImage = ({ image }) => {

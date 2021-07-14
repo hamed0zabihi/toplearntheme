@@ -5,7 +5,7 @@ const AdminTopNav = ({ user }) => {
   return (
     <ul className="nav navbar-left top-nav">
       <li className="dropdown">
-        <a href="#" className="dropdown-toggle" data-toggle="dropdown">
+        <a href="/#" className="dropdown-toggle" data-toggle="dropdown">
           <i className="fa fa-user"> </i> {user.fullname}
           <b className="caret"></b>
         </a>

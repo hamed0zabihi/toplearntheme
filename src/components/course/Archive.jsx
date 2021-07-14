@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { paginate } from "../common/paginate";
 import Pagination from "../common/pagination";
 import Course from "./Course";
@@ -22,7 +21,7 @@ const Archive = () => {
     el.title.includes(search)
   );
   ////filter radio top
-  const [topFilterRadio, setTopFilterRadio] = useState("all");
+
   const filterRaio = (n) => {
     switch (n) {
       case "all":
@@ -51,8 +50,8 @@ const Archive = () => {
     setfilteredSearch(orderBy(filteredSearch, fieldName, "asc"));
   };
   // for pagination options
-  const [perpage, setperpage] = useState(8);
 
+  const perpage = 8;
   const [currentpage, setcurrentpage] = useState(1);
   const handlePageChage = (page) => {
     setcurrentpage(page);
@@ -67,10 +66,10 @@ const Archive = () => {
         <nav aria-label="breadcrumb">
           <ul className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="#">تاپ لرن</a>
+              <a href="/#">تاپ لرن</a>
             </li>
             <li className="breadcrumb-item active">
-              <a href="#">دوره ها</a>
+              <a href="/#">دوره ها</a>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               {" "}
@@ -111,7 +110,6 @@ const Archive = () => {
                 <div
                   className="switch-field available"
                   onChange={(e) => {
-                    setTopFilterRadio(e.target.value);
                     filterRaio(e.target.value);
                   }}
                 >

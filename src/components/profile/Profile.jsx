@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
 import { isEmpty } from "lodash";
 import { toast } from "react-toastify";
 
@@ -24,10 +23,10 @@ const Profile = () => {
               <aside>
                 <div className="avatar-layer">
                   <div className="img-layer">
-                    <a href="" className="change-image">
+                    <a href="/#" className="change-image">
                       <i className="zmdi zmdi-edit"></i>
                     </a>
-                    <img src="images/pic/avatar.jpg" />
+                    <img src="images/pic/avatar.jpg" alt="avatar" />
                   </div>
                   <div className="detail">
                     <span>{user.fullname} </span>
@@ -41,19 +40,19 @@ const Profile = () => {
                   <div className="inner">
                     <ul>
                       <li>
-                        <a href=""> مشاهده حساب کابری </a>
+                        <a href="/#"> مشاهده حساب کابری </a>
                       </li>
                       <li>
-                        <a href=""> ویرایش حساب کابری </a>
+                        <a href="/#"> ویرایش حساب کابری </a>
                       </li>
                       <li>
-                        <a href=""> تغییر رمز عبور </a>
+                        <a href="/#"> تغییر رمز عبور </a>
                       </li>
                       <li>
-                        <a href=""> تنظیمات حساب کاربری </a>
+                        <a href="/#"> تنظیمات حساب کاربری </a>
                       </li>
                       <li>
-                        <a href=""> خروج از حساب کاربری </a>
+                        <a href="/#"> خروج از حساب کاربری </a>
                       </li>
                     </ul>
                   </div>

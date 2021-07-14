@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { isEmpty } from "lodash";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -20,13 +19,12 @@ const TopNav = () => {
               <NavLink to="/contactus"> تماس با ما </NavLink>
               {cart.items.length ? (
                 <NavLink to="/cart">
-                  <i class="fa fa-shopping-cart "></i>
+                  <i className="fa fa-shopping-cart "></i>
                   <span
-                    class="counter counter-lg"
+                    className="counter counter-lg"
                     style={{
                       top: "-12px",
                       position: "relative",
-                      backgroundColor: "#fe1212",
                       color: "#fe1212",
                       backgroundColor: "lime",
                       borderRadius: "10em",

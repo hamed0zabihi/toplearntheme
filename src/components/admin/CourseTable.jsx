@@ -97,7 +97,7 @@ const CourseTable = ({ courses }) => {
                   <th scope="col">
                     عنوان دوره{" "}
                     <i
-                      class="zmdi zmdi-sort-asc"
+                      className="zmdi zmdi-sort-asc"
                       onClick={() => toggleSorting("title")}
                     ></i>
                   </th>
@@ -105,7 +105,7 @@ const CourseTable = ({ courses }) => {
                   <th scope="col">
                     قیمت دوره (تومان){" "}
                     <i
-                      class="zmdi zmdi-sort-asc"
+                      className="zmdi zmdi-sort-asc"
                       onClick={() => toggleSorting("price")}
                     ></i>
                   </th>
@@ -122,6 +122,7 @@ const CourseTable = ({ courses }) => {
                         href={`https://toplearnapi.ghorbany.dev/${course.imageUrl}`}
                         target="_blank"
                         className="btn btn-info btn-sm"
+                        rel="noopener noreferrer"
                       >
                         نمایش تصویر
                       </a>

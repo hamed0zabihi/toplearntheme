@@ -18,7 +18,6 @@ const Login = ({ history }) => {
   const [loading, setLoading] = useState(false);
   const [rememberme, setRememberme] = useState();
   const [, forceUpdate] = useState();
-  const [auth, setAuth] = useState(false);
   const dispatch = useDispatch();
   // const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
 
@@ -67,10 +66,17 @@ const Login = ({ history }) => {
 
           expires.setTime(expires.getTime() + 200000);
 
-          const options = { path: "/", expires };
+          const options = {
+            path: "/",
+            expires,
+            secure: true,
+            sameSite: "none",
+          };
 
           // CookieServices("namdse", email, options);
           CookieServices.set("forToken", email, options);
+          //fix error cookie
+
           // const user = {
           //   email: userLogined.email,
           //   name: fullName,
@@ -144,9 +150,12 @@ const Login = ({ history }) => {
                   validator.current.showMessageFor("email");
                 }}
               />
+
               {validator.current.message("email", email, "required|email")}
             </div>
-
+            <small id="emailHelp" className="form-text text-muted text-info">
+              younes.gh@chmail.ir
+            </small>
             <div className="input-group">
               <span className="input-group-addon" id="password">
                 <i className="zmdi zmdi-lock"></i>
@@ -170,7 +179,9 @@ const Login = ({ history }) => {
               )}
               {/* regex:^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])| */}
             </div>
-
+            <small id="passwordHelp" className="form-text text-muted text-info">
+              123456
+            </small>
             <div className="remember-me">
               <label>
                 <input
@@ -186,13 +197,11 @@ const Login = ({ history }) => {
             </div>
 
             <div className="link">
-              <a href="">
-                {" "}
+              <a href="/#">
                 <i className="zmdi zmdi-lock"></i> رمز عبور خود را فراموش کرده
                 ام !
               </a>
-              <a href="">
-                {" "}
+              <a href="/#">
                 <i className="zmdi zmdi-account"></i> عضویت در سایت{" "}
               </a>
             </div>

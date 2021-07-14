@@ -34,7 +34,7 @@ const AsideCourse = ({ price, id, course }) => {
 
         {cart.items.find((el) => el._id === id) ? (
           <Link to="/cart" style={{ backgroundColor: "transparent" }}>
-            <button class="center-block btn btn-default ">
+            <button className="center-block btn btn-default ">
               موجود در سبد خرید<i className="fa fa-shopping-cart"></i>
             </button>
           </Link>
@@ -46,7 +46,7 @@ const AsideCourse = ({ price, id, course }) => {
       </div>
 
       <article className="teacher-info">
-        <img src="../images/pic/avatar.jpg" />
+        <img src="../images/pic/avatar.jpg" alt="avatar" />
         <h2> مدرس : ایمان مدائنی </h2>
         <p>
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
@@ -67,29 +67,29 @@ const AsideCourse = ({ price, id, course }) => {
 
       <div className="share-layer">
         <span> به اشتراک گذاری </span>
-        <a href="">
+        <a href="/#">
           <i className="zmdi zmdi-facebook"></i>
         </a>
-        <a href="">
+        <a href="/#">
           <i className="zmdi zmdi-google-old"></i>
         </a>
-        <a href="">
+        <a href="/#">
           <i className="zmdi zmdi-twitter"></i>
         </a>
-        <a href="">
+        <a href="/#">
           <i className="zmdi zmdi-linkedin"></i>
         </a>
       </div>
 
       <div className="tags-layer">
-        <a href=""> ربات تلگرام </a>
-        <a href=""> ساخت ربات </a>
-        <a href=""> برنامه نویسی ربات </a>
-        <a href=""> کدنویسی ربات </a>
-        <a href=""> ربات تلگرام </a>
-        <a href=""> ساخت ربات </a>
-        <a href=""> برنامه نویسی ربات </a>
-        <a href=""> کدنویسی ربات </a>
+        <a href="/#"> ربات تلگرام </a>
+        <a href="/#"> ساخت ربات </a>
+        <a href="/#"> برنامه نویسی ربات </a>
+        <a href="/#"> کدنویسی ربات </a>
+        <a href="/#"> ربات تلگرام </a>
+        <a href="/#"> ساخت ربات </a>
+        <a href="/#"> برنامه نویسی ربات </a>
+        <a href="/#"> کدنویسی ربات </a>
       </div>
     </aside>
   );

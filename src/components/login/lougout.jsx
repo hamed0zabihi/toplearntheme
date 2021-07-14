@@ -12,7 +12,7 @@ const Logout = ({ history }) => {
     localStorage.removeItem("userName");
 
     history.replace("/");
-  }, []);
+  });
   return null;
 };
 export default withRouter(Logout);

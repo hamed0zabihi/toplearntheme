@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 import registerUser from "../../services/userservices";
 import { useSelector } from "react-redux";
+import { isEmpty } from "lodash";
+
 const Register = ({ history }) => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -68,6 +70,7 @@ const Register = ({ history }) => {
     }
     // console.log(JSON.stringify(user));
   };
+  if (!isEmpty(user)) return null;
   return (
     <main className="client-page">
       <div className="container-content">

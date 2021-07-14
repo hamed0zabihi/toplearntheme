@@ -59,7 +59,7 @@ const Toplearn = () => {
         dispatch(clearUser());
       } else dispatch(addUser(decodedToken.payload.user));
     }
-  }, []);
+  }, [dispatch]);
   return (
     <Switch>
       <Route path={["/dashboard"]}>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
 import { paginate } from "../common/paginate";
 import Pagination from "../common/pagination";
 import Course from "./Course";
@@ -12,8 +11,6 @@ const Search = ({ match }) => {
   // if use api jasonplaceholder.com
   // const allCourses = Object.values(courses);
   //search
-
-  const [searchedWord, setsearchedWord] = useState("");
   const [search, setsearch] = useState("");
   const [filteredSearch, setfilteredSearch] = useState([]);
   useEffect(() => {
@@ -31,10 +28,9 @@ const Search = ({ match }) => {
     if (!isEmpty(searched) && !isUndefined(searched)) {
       setsearch(searched);
     }
-  }, []);
+  }, [searched]);
 
   ////filter radio top
-  const [topFilterRadio, setTopFilterRadio] = useState("all");
   const filterRaio = (n) => {
     switch (n) {
       case "all":
@@ -63,8 +59,7 @@ const Search = ({ match }) => {
     setfilteredSearch(orderBy(filteredSearch, fieldName, "asc"));
   };
   // for pagination options
-  const [perpage, setperpage] = useState(8);
-
+  const perpage = 8;
   const [currentpage, setcurrentpage] = useState(1);
   const handlePageChage = (page) => {
     setcurrentpage(page);
@@ -79,10 +74,10 @@ const Search = ({ match }) => {
         <nav aria-label="breadcrumb">
           <ul className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="#">تاپ لرن</a>
+              <a href="/#">تاپ لرن</a>
             </li>
             <li className="breadcrumb-item active">
-              <a href="#">دوره ها</a>
+              <a href="/#">دوره ها</a>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               {" "}
@@ -124,7 +119,6 @@ const Search = ({ match }) => {
                 <div
                   className="switch-field available"
                   onChange={(e) => {
-                    setTopFilterRadio(e.target.value);
                     filterRaio(e.target.value);
                   }}
                 >
