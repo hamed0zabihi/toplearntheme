@@ -6,15 +6,17 @@ const Pagination = ({ totalpages, currentpage, perpage, handlePageChage }) => {
   const pageCounter = range(1, pageCount + 1);
   return (
     <nav aria-label="Page navigation">
-      <ul className="pagination justify-content-center">
+      <ul className="pagination-fix">
         {pageCounter.map((pages) => (
-          <li
-            key={pages}
-            className={pages === currentpage ? "page-item active" : "page-item"}
-          >
-            <a className="page-link" onClick={() => handlePageChage(pages)}>
+          <li key={pages}>
+            <div
+              className={
+                pages === currentpage ? "page-link actives" : "page-link"
+              }
+              onClick={() => handlePageChage(pages)}
+            >
               {pages}
-            </a>
+            </div>
           </li>
         ))}
       </ul>
