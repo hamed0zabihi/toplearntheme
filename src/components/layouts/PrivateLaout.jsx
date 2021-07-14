@@ -19,9 +19,7 @@ const PrivateLayout = ({ children }) => {
             داشبورد تاپلرن
           </Link>
         </div>
-
         <AdminTopNav user={user} />
-
         <AdminSidebar />
       </nav>
       <div id="page-wrapper">{children}</div>

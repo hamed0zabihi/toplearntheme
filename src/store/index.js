@@ -2,6 +2,7 @@ import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { getAllCourses } from "../actions/courses";
 import { reducers } from "../reducers/";
+
 export const store = createStore(
   reducers,
   compose(

@@ -5,7 +5,6 @@ import ReactLoading from "react-loading";
 import SimpleReactValidator from "simple-react-validator";
 import { loginUser } from "../../services/userservices";
 import { Helmet } from "react-helmet";
-
 import CookieServices from "../../services/cookieservices";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../actions/user";
@@ -32,10 +31,12 @@ const Login = ({ history }) => {
       element: (message) => <div style={{ color: "red" }}>{message}</div>,
     })
   );
+
   const resetLoginForm = () => {
     setPassword("");
     setEmail("");
   };
+
   const handelLogin = async (event) => {
     event.preventDefault();
     const user = {

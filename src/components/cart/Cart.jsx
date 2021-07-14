@@ -2,6 +2,7 @@ import { isEmpty } from "lodash";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RemoveFromCart, ClearCart } from "../../actions/cart";
+
 const Cart = () => {
   const dispatch = useDispatch();
   const carts = useSelector((state) => state.cart);

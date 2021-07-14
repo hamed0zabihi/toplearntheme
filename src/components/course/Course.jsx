@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ShowImage from "../common/ShowImage";
+
 const Course = ({ coursess }) => {
   // let coursesArray = Object.values(coursess);
 

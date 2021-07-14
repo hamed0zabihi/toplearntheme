@@ -69,17 +69,13 @@ const Profile = () => {
                     <h3> اطلاعات کاربری </h3>
                     <ul>
                       <li>
-                        {" "}
                         <i className="zmdi zmdi-account"></i> نام و نام خانوادگی
                         :{user.fullname}{" "}
                       </li>
-
                       <li>
-                        {" "}
                         <i className="zmdi zmdi-email"></i> ایمیل :{user.email}{" "}
                       </li>
                       <li>
-                        {" "}
                         <i className="zmdi zmdi-calendar-check"></i>
                         شماره عضویت :{user.userId}{" "}
                       </li>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-axios.defaults.headers.post["Content-Type"] = "application/json";
 
+axios.defaults.headers.post["Content-Type"] = "application/json";
 // axios.defaults.headers["Access-Control-Allow-Origin"] = "*";
 // axios.defaults.headers["Access-Control-Allow-Methods"] =
 //   "GET, POST, PUT, DELETE";
@@ -28,12 +28,6 @@ axios.interceptors.response.use(null, (error) => {
   return Promise.reject(error);
 });
 
-// export default {
-//   get: axios.get,
-//   post: axios.post,
-//   put: axios.put,
-//   delete: axios.delete,
-// };
 const http = {
   get: axios.get,
   post: axios.post,

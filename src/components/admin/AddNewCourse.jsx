@@ -11,6 +11,7 @@ const AddNewCourse = ({ toggle, modal }) => {
   const [imgaeUrl, setimgaeUrl] = useState();
   const dispatch = useDispatch();
   const [, forceUpdate] = useState();
+
   const validator = useRef(
     new SimpleReactValidator({
       messages: {
@@ -24,6 +25,7 @@ const AddNewCourse = ({ toggle, modal }) => {
       element: (message) => <div style={{ color: "red" }}>{message}</div>,
     })
   );
+
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
@@ -33,7 +35,6 @@ const AddNewCourse = ({ toggle, modal }) => {
         data.append("price", Number.parseInt(price)); //string to number
         data.append("imageUrl", e.target.imageUrl.files[0]);
         data.append("info", info);
-
         console.log("data", ...data);
         //dispatch
         dispatch(CreateNewCourse(data));
@@ -46,6 +47,7 @@ const AddNewCourse = ({ toggle, modal }) => {
       console.log(error);
     }
   };
+
   return (
     <div>
       <DialogOverlay

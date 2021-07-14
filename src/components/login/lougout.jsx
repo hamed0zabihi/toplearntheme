@@ -5,12 +5,12 @@ import { clearUser } from "../../actions/user";
 
 const Logout = ({ history }) => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(clearUser());
     localStorage.removeItem("token");
     localStorage.removeItem("expireTime");
     localStorage.removeItem("userName");
-
     history.replace("/");
   });
   return null;

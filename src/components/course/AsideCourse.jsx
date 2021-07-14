@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AddToCart } from "../../actions/cart";
+
 const AsideCourse = ({ price, id, course }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+
   const handleAddToCart = (e) => {
     e.preventDefault();
     dispatch(AddToCart(course));

@@ -3,6 +3,7 @@ import { DialogOverlay, DialogContent } from "@reach/dialog";
 import { useDispatch } from "react-redux";
 import { UpdateCourse } from "../../actions/courses";
 import SimpleReactValidator from "simple-react-validator";
+
 const EditCourseModal = ({ toggle, modal, course }) => {
   const [title, settitle] = useState();
   const [price, setprice] = useState();
@@ -11,6 +12,7 @@ const EditCourseModal = ({ toggle, modal, course }) => {
   const [courseid, setcourseid] = useState();
   const dispatch = useDispatch();
   const [, forceUpdate] = useState();
+
   const validator = useRef(
     new SimpleReactValidator({
       messages: {
@@ -25,6 +27,7 @@ const EditCourseModal = ({ toggle, modal, course }) => {
       element: (message) => <div style={{ color: "red" }}>{message}</div>,
     })
   );
+
   useEffect(() => {
     setcourseid(course._id);
     settitle(course.title);
@@ -40,6 +43,7 @@ const EditCourseModal = ({ toggle, modal, course }) => {
       setinfo();
     };
   }, [course]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validator.current.allValid()) {

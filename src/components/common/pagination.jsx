@@ -1,8 +1,10 @@
 import React from "react";
 import { range } from "lodash";
+
 const Pagination = ({ totalpages, currentpage, perpage, handlePageChage }) => {
   const pageCount = Math.ceil(totalpages / perpage);
   if (pageCount === 1) return null;
+
   const pageCounter = range(1, pageCount + 1);
   return (
     <nav aria-label="Page navigation">

@@ -32,7 +32,7 @@ const Toplearn = () => {
   // if api is jasonplaceholder
   const b = Object.values(courses);
   const indexCourses = paginate(courses, 1, 8);
-  // console.log("indexCourses", indexCourses);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {

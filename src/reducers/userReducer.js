@@ -6,7 +6,6 @@ export const userReducer = (state = {}, action) => {
       return { ...action.payload };
     case "CLEAR_USER":
       return { ...action.payload };
-
     default:
       return state;
   }

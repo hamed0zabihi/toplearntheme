@@ -6,6 +6,7 @@ import TopNav from "../common/TopNav";
 import Footer from "../common/Footer";
 import { ToastContainer } from "react-toastify";
 import { Helmet } from "react-helmet";
+
 const MainLayout = (props) => {
   const { pathname } = props.location;
   return (

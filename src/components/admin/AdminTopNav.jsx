@@ -15,13 +15,11 @@ const AdminTopNav = ({ user }) => {
               <i className="fa fa-fw fa-user"></i> پروفایل
             </Link>
           </li>
-
           <li>
             <Link to="/">
               <i className="fa fa-fw fa-eye"></i>مشاهده سایت
             </Link>
           </li>
-
           <li className="divider"></li>
           <li>
             <Link to="/logout">

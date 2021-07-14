@@ -5,6 +5,7 @@ const registerUser = (user) => {
   return http.post(`${config.ghorbaniApi}/api/register`, user);
 };
 export default registerUser;
+
 export const loginUser = (user) => {
   // console.log("json", JSON.stringify(user));
   return http.post(`${config.ghorbaniApi}/api/login`, JSON.stringify(user));

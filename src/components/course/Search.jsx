@@ -13,6 +13,7 @@ const Search = ({ match }) => {
   //search
   const [search, setsearch] = useState("");
   const [filteredSearch, setfilteredSearch] = useState([]);
+
   useEffect(() => {
     setfilteredSearch(courses);
   }, [courses]);

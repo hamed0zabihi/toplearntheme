@@ -33,12 +33,14 @@ const Register = ({ history }) => {
       element: (message) => <div style={{ color: "red" }}>{message}</div>,
     })
   );
+
   const resetForm = () => {
     setPassword("");
     setEmail("");
     setFullname("");
     setVerifypassword("");
   };
+
   const handleRegisterFormSubmit = async (event) => {
     event.preventDefault();
     const user = {

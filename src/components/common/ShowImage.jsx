@@ -1,5 +1,6 @@
 import { Img } from "react-image";
 import ReactLoading from "react-loading";
+
 const ShowImage = ({ image }) => {
   // console.log("image:", image);
   return (

@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-
 import { DialogOverlay, DialogContent } from "@reach/dialog";
 import { isEmpty } from "lodash";
 import { DeleteCourseAction } from "../../actions/courses";
+
 const DeleteCourseModal = ({ toggle, modal, id }) => {
   const allcourses = useSelector((state) => state.courses);
   const course = allcourses.filter((el) => el._id === id);
@@ -49,7 +49,6 @@ const DeleteCourseModal = ({ toggle, modal, id }) => {
                 </tbody>
               </table>
             ) : null}
-
             <button
               type="submit"
               className="btn btn-danger "

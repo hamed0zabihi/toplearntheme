@@ -1,4 +1,5 @@
 import Cookies from "universal-cookie";
+
 const cookies = new Cookies();
 class CookieServices {
   set(name, value, options) {
